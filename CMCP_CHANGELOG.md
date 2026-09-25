@@ -13,7 +13,7 @@
 ### Target-to-canon mapping
 
 - Canon018: `exchanging/exchange` maps to `App\\Exchanging\\` and `Exchange*`; current PHP source satisfies this.
-- Canon052: consumer `.gating/` is artifact-only. The copied owner tree was preserved outside the source surface under ignored `var/cmcp-preserved-gating-owner-copy/`, and `.gating/README.md` was rebuilt as a non-executable artifact-boundary note.
+- Canon052: consumer `.gating/` is artifact-only. The accidental copied owner tree was removed from local state, and `.gating/README.md` was rebuilt as a non-executable artifact-boundary note.
 - Canon053: Exchanging is not the App host; its sibling symlink contour remains limited to canonical helper/foundation exceptions and currently passes Gating.
 - Documentation/runtime parity: component manifest and neighbor-contract documentation were synchronized to the already-canonical flat `DTO`, `ProviderInterface`, and `ServiceInterface` topology.
 
@@ -24,8 +24,8 @@
 
 ### Material risks
 
-- The repository still has a largely untracked initial Git baseline. No broad staging or fabricated initial commit is permitted without a trustworthy repository-history boundary.
-- The preserved Gating owner copy under `var/` is intentionally non-source, non-normative local state and must not be promoted into Git.
+- The canonical repository baseline is now captured in signed commit `a6281eb` after explicit user authorization to adopt the verified tree as the Git baseline.
+- The accidental Gating owner copy was removed from ignored local state after Canon055 began scanning it; no copied owner tree remains in the Exchanging workspace.
 
 ### Verification and acceptance
 
