@@ -1,0 +1,29 @@
+= Exchanging NBU Provider Hardening
+
+== Purpose
+
+Wave 37 hardens the optional NBU provider implementation.
+
+== Improvements
+
+* trims and normalizes base/quote currency codes;
+* rejects empty base currency code;
+* keeps direct `FOREIGN/UAH` boundary;
+* wraps Symfony HttpClient transport failures in a provider-context runtime exception;
+* validates that NBU payload is an array;
+* validates that the first response row exists;
+* validates that `rate` is scalar and numeric;
+* safely parses `exchangedate` in `d.m.Y` format;
+* falls back to requested date or today when response date is unavailable.
+
+== Boundary
+
+The provider remains direct for NBU UAH rates only.
+
+No cross-rate calculation was introduced.
+
+== Canon
+
+* provider stays in `src/Service/Exchange`;
+* no `/src/Domain/`;
+* no ports-and-adapters architecture.

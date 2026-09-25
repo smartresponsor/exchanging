@@ -1,0 +1,23 @@
+= Exchanging Wave 36 NBU Failure Map Report
+
+== Added
+
+* `docs/provider/exchanging-nbu-provider-failure-map.adoc`
+* `docs/provider/exchanging-nbu-provider-remediation-checklist.adoc`
+* `tools/proof/exchanging-nbu-provider-diagnose.ps1`
+
+== Purpose
+
+Wave 36 adds diagnostics and remediation guidance for optional NBU provider activation/fetch failures.
+
+== Runtime code changes
+
+None.
+
+== Diagnostic command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-nbu-provider-diagnose.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging"
+----

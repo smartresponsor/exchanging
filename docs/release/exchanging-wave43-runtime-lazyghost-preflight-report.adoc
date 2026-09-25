@@ -1,0 +1,30 @@
+= Exchanging Wave 43 Runtime LazyGhost Preflight Report
+
+== Modified
+
+* `config/packages/exchange_doctrine_runtime.yaml`
+
+== Added
+
+* `tools/proof/exchanging-runtime-config-preflight.ps1`
+* `docs/runtime/exchanging-runtime-lazyghost-preflight.adoc`
+
+== Purpose
+
+Wave 43 hardens the standalone runtime fix by overwriting runtime Doctrine config and adding a preflight scanner for explicit LazyGhost YAML settings.
+
+== Runtime config change
+
+`enable_lazy_ghost_objects` is absent from `config/packages/exchange_doctrine_runtime.yaml`.
+
+== Expected sequence
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-runtime-config-preflight.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+
+Remove-Item -Recurse -Force var\cache -ErrorAction SilentlyContinue
+php bin/console cache:clear
+php bin/console list exchanging
+----

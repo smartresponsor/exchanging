@@ -1,0 +1,28 @@
+= Exchanging Rate Read Surface
+
+== Purpose
+
+The rate read surface gives host applications and console smoke flows a simple way to inspect captured rates.
+
+== Service
+
+`ExchangeRateReadServiceInterface`
+
+== Command
+
+[source,powershell]
+----
+php bin/console exchanging:rate:latest
+php bin/console exchanging:rate:latest --base=USD --quote=UAH --provider=demo --limit=10
+----
+
+== Filters
+
+* `base`
+* `quote`
+* `provider`
+* `limit`
+
+== Canon
+
+This is a read/query surface only. It does not introduce a separate read-model architecture or `/src/Domain/`.

@@ -1,0 +1,69 @@
+= Exchanging RC Checkpoint Summary
+
+== Checkpoint
+
+Wave 29 records the current Exchanging component as an architecture/business release-candidate checkpoint.
+
+== Implemented surface
+
+* Composer package identity: `exchanging/exchange`
+* Namespace: `App\Exchanging`
+* Symfony bundle-compatible surface
+* DI extension
+* Manual host integration docs
+* Doctrine entities, repositories, migration, and schema manifest
+* Quote service
+* Rate capture service
+* Local repository-backed provider
+* Remote provider registry
+* Generic HTTP JSON provider skeleton
+* Fetch-and-capture flow
+* Request validation
+* Rate freshness policy
+* Optional quote freshness enforcement
+* Applied-rate audit payload construction
+* Demo seed rates
+* Latest-rate read/query service
+* HTTP endpoints for quote, capture, latest rates, status, and health
+* Console commands for capture, quote, fetch, fetch-capture, demo seed, latest, status, and health
+* OpenAPI contract
+* Component, architecture, product, and canon manifests
+* Jira delivery surface
+* RC self-audit gate
+
+== Current HTTP endpoints
+
+* `POST /exchanging/quote`
+* `POST /exchanging/rates/capture`
+* `GET /exchanging/rates/latest`
+* `GET /exchanging/status`
+* `GET /exchanging/health`
+
+== Current console commands
+
+* `exchanging:rate:capture`
+* `exchanging:quote`
+* `exchanging:rate:fetch`
+* `exchanging:rate:fetch-capture`
+* `exchanging:demo:seed-rates`
+* `exchanging:rate:latest`
+* `exchanging:status`
+* `exchanging:health`
+
+== Canon compliance
+
+* no `/src/Domain/`
+* no ports-and-adapters architecture
+* namespace stays `App\Exchanging`
+* table prefix stays `exchange_`
+* service interfaces stay under mirrored `ServiceInterface` layer
+
+== Not claimed
+
+This checkpoint does not claim:
+
+* final host runtime proof
+* external provider certification
+* PHPUnit/PHPStan proof
+* production security review
+* production data migration review

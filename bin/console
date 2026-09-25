@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use App\Exchanging\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Dotenv\Dotenv;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+$projectDir = dirname(__DIR__);
+
+if (class_exists(Dotenv::class) && file_exists($projectDir . '/.env')) {
+    (new Dotenv())->bootEnv($projectDir . '/.env');
+}
+
+/**
+ * Standalone runtime fallback.
+ *
+ * This keeps Exchanging executable as a component-runtime even when symfony/dotenv
+ * is not installed or .env was not loaded by the host process.
+ */
+$_SERVER['APP_ENV'] ??= $_ENV['APP_ENV'] ?? 'dev';
+$_ENV['APP_ENV'] ??= $_SERVER['APP_ENV'];
+
+$_SERVER['APP_DEBUG'] ??= $_ENV['APP_DEBUG'] ?? '1';
+$_ENV['APP_DEBUG'] ??= $_SERVER['APP_DEBUG'];
+
+$_SERVER['APP_SECRET'] ??= $_ENV['APP_SECRET'] ?? 'change-me-exchanging-runtime-secret';
+$_ENV['APP_SECRET'] ??= $_SERVER['APP_SECRET'];
+
+$_SERVER['DATABASE_URL'] ??= $_ENV['DATABASE_URL'] ?? 'sqlite:///%kernel.project_dir%/var/exchanging_runtime.sqlite';
+$_ENV['DATABASE_URL'] ??= $_SERVER['DATABASE_URL'];
+
+$input = new ArgvInput();
+$env = (string) ($_SERVER['APP_ENV'] ?? 'dev');
+$debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
+
+$kernel = new Kernel($env, $debug);
+$application = new Application($kernel);
+$application->run($input);

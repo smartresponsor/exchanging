@@ -1,0 +1,11 @@
+parameters:
+  exchanging.nbu_provider_code: 'nbu'
+  exchanging.nbu_endpoint_url: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange'
+
+services:
+  App\Exchanging\Provider\ExchangeNbuRemoteRateProvider:
+    arguments:
+      $endpointUrl: '%exchanging.nbu_endpoint_url%'
+      $providerCode: '%exchanging.nbu_provider_code%'
+    tags:
+      - { name: app.exchanging_remote_rate_provider, priority: 200 }

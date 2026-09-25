@@ -1,0 +1,46 @@
+= Exchanging Rate Read API
+
+== Endpoint
+
+[source,text]
+----
+GET /exchanging/rates/latest
+----
+
+== Query parameters
+
+* `base`
+* `quote`
+* `provider`
+* `limit`
+
+== Example
+
+[source,powershell]
+----
+curl "http://localhost:8000/exchanging/rates/latest?base=USD&quote=UAH&provider=demo&limit=10"
+----
+
+== Response shape
+
+[source,json]
+----
+{
+  "count": 1,
+  "items": [
+    {
+      "exchangeRateId": "uuid",
+      "baseCurrencyCode": "USD",
+      "quoteCurrencyCode": "UAH",
+      "rateValue": "41.2500000000",
+      "providerCode": "demo",
+      "rateDate": "2026-05-03",
+      "capturedAtImmutable": "2026-05-03T00:00:00+00:00"
+    }
+  ]
+}
+----
+
+== Canon
+
+This endpoint exposes the existing read/query service. It does not introduce a separate read-model architecture.

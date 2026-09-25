@@ -1,0 +1,27 @@
+= Exchanging Wave 50 Composer JSON BOM Fix Report
+
+== Added
+
+* `tools/runtime/exchanging-remove-composer-bom.ps1`
+* `docs/runtime/exchanging-composer-json-bom-repair.adoc`
+
+== Modified
+
+* `tools/runtime/exchanging-fix-exact-composer-constraints.ps1`
+* `tools/runtime/exchanging-update-symfony8-targeted.ps1`
+
+== Purpose
+
+Wave 50 repairs and prevents UTF-8 BOM corruption in `composer.json`.
+
+== Runtime code changes
+
+None.
+
+== Immediate repair
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-remove-composer-bom.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----

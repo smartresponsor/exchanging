@@ -1,0 +1,5 @@
+# Optional NBU provider import for sibling-repository host integration.
+#
+# Adjust the path if the host application is not a sibling of Exchanging.
+imports:
+  - { resource: '../Exchanging/config/packages/exchange_nbu_provider.yaml' }

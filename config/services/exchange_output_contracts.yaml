@@ -1,0 +1,6 @@
+services:
+  App\Exchanging\ProviderInterface\ExchangeTemplateContextProviderInterface:
+    alias: App\Exchanging\Provider\ExchangeTemplateContextProvider
+
+  App\Exchanging\ProviderInterface\ExchangeNeighborHookContextProviderInterface:
+    alias: App\Exchanging\Provider\ExchangeNeighborHookContextProvider

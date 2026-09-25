@@ -1,0 +1,18 @@
+= Exchanging Canon Manifest
+
+== Machine-readable file
+
+[source,text]
+----
+docs/canon/exchanging-canon-manifest.json
+----
+
+== Rules
+
+* All component classes use `App\Exchanging`.
+* Composer package identity is `exchanging/exchange`.
+* Do not introduce `/src/Domain/`.
+* Do not introduce ports-and-adapters architecture.
+* Doctrine-owned tables use the `exchange_` prefix.
+* Service interfaces live in mirrored `ServiceInterface` folders.
+* Use Symfony-identifiable layers.

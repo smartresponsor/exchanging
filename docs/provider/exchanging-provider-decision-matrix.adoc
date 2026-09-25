@@ -1,0 +1,42 @@
+= Exchanging Provider Decision Matrix
+
+== Current providers
+
+[cols="1,2,2,2"]
+|===
+| Provider | Purpose | Strength | Limitation
+
+| `manual`
+| Manual captured rates
+| Explicit and safe
+| No remote fetch
+
+| `demo`
+| Local smoke/demo data
+| Repeatable proof flow
+| Not production data
+
+| `http-json`
+| Generic configurable HTTP JSON source
+| Flexible
+| Requires host-specific endpoint contract
+
+| `nbu`
+| Official NBU rates to UAH
+| Provider-specific implementation
+| Direct foreign-currency to UAH only
+|===
+
+== Next provider candidates
+
+* ECB
+* OpenExchangeRates
+* internal corporate provider
+
+== Recommendation
+
+Use `nbu` for official UAH quote/capture proof.
+
+Use `http-json` when the host app has an internal normalized exchange-rate endpoint.
+
+Use provider-specific classes for production-grade remote sources.

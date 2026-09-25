@@ -1,0 +1,26 @@
+= Exchanging Fetch and Capture Flow
+
+== Purpose
+
+The fetch-and-capture flow turns a remote provider result into a persisted `exchange_rate` snapshot.
+
+== Service contract
+
+`ExchangeFetchAndCaptureServiceInterface`
+
+== Commands
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch USD UAH provider-code --rate-date=2026-05-03
+php bin/console exchanging:rate:fetch-capture USD UAH provider-code --rate-date=2026-05-03
+----
+
+== Notes
+
+`manual` intentionally cannot be used for remote fetch. For manual rates, use:
+
+[source,powershell]
+----
+php bin/console exchanging:rate:capture USD UAH 41.2500000000 manual --rate-date=2026-05-03
+----

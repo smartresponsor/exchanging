@@ -1,0 +1,21 @@
+= Exchanging Wave 22 Docs Index and Manifests Report
+
+== Added
+
+* `docs/index.adoc`
+* `docs/architecture/exchanging-architecture-manifest.json`
+* `docs/architecture/exchanging-architecture-manifest.adoc`
+* `docs/product/exchanging-product-manifest.json`
+* `docs/product/exchanging-product-manifest.adoc`
+* `docs/canon/exchanging-canon-manifest.json`
+* `docs/canon/exchanging-canon-manifest.adoc`
+* `AGENTS.md`
+* `PROMPT.md`
+
+== Purpose
+
+Wave 22 strengthens agent-readability and repository navigation.
+
+== Runtime code changes
+
+None.

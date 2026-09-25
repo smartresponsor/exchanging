@@ -1,0 +1,77 @@
+{
+  "component": "Exchanging",
+  "namespace": "App\\Exchanging",
+  "package": "exchanging/exchange",
+  "consumer_boundaries": {
+    "Currencing": {
+      "owns": [
+        "currency metadata",
+        "minor units",
+        "formatting",
+        "money normalization"
+      ],
+      "exchanging_hook": [
+        "currency codes used by exchange pairs and rates"
+      ],
+      "must_not_move_to_exchanging": [
+        "currency catalogue ownership"
+      ]
+    },
+    "Ordering": {
+      "owns": [
+        "order lifecycle",
+        "order totals",
+        "pricing composition"
+      ],
+      "exchanging_hook": [
+        "quote",
+        "applied-rate audit payload"
+      ],
+      "interfaces": [
+        "ExchangeQuoteServiceInterface",
+        "ExchangeAppliedRateAuditServiceInterface"
+      ]
+    },
+    "Paying": {
+      "owns": [
+        "payment authorization",
+        "capture",
+        "refund",
+        "provider lifecycle"
+      ],
+      "exchanging_hook": [
+        "quote",
+        "applied-rate audit payload"
+      ],
+      "interfaces": [
+        "ExchangeQuoteServiceInterface",
+        "ExchangeAppliedRateAuditServiceInterface"
+      ]
+    },
+    "Taxating": {
+      "owns": [
+        "taxable basis",
+        "jurisdiction rules",
+        "tax line calculation",
+        "tax evidence persistence"
+      ],
+      "exchanging_hook": [
+        "quote",
+        "freshness policy",
+        "applied-rate audit payload"
+      ],
+      "interfaces": [
+        "ExchangeQuoteServiceInterface",
+        "ExchangeAppliedRateAuditServiceInterface",
+        "ExchangeRateFreshnessServiceInterface"
+      ]
+    }
+  },
+  "canon": {
+    "forbidden": [
+      "/src/Domain/",
+      "ports-and-adapters architecture"
+    ],
+    "namespace": "App\\Exchanging"
+  }
+}

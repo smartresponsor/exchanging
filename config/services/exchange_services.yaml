@@ -1,0 +1,94 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Exchanging\:
+    resource: '../../src/'
+    exclude:
+      - '../../src/Entity/'
+      - '../../src/Dto/'
+      - '../../src/ValueObject/'
+
+  App\Exchanging\Repository\ExchangeRepository:
+    tags:
+      - { name: doctrine.repository_service }
+
+  App\Exchanging\Repository\ExchangeRateRepository:
+    tags:
+      - { name: doctrine.repository_service }
+
+  App\Exchanging\ServiceInterface\ExchangeQuoteServiceInterface:
+    alias: App\Exchanging\Service\ExchangeQuoteService
+
+  App\Exchanging\ServiceInterface\ExchangeRateCaptureServiceInterface:
+    alias: App\Exchanging\Service\ExchangeRateCaptureService
+
+  App\Exchanging\ServiceInterface\ExchangeRequestValidationServiceInterface:
+    alias: App\Exchanging\Service\ExchangeRequestValidationService
+
+  App\Exchanging\ServiceInterface\ExchangeRemoteRateFetchServiceInterface:
+    alias: App\Exchanging\Service\ExchangeRemoteRateFetchService
+
+  App\Exchanging\ServiceInterface\ExchangeFetchAndCaptureServiceInterface:
+    alias: App\Exchanging\Service\ExchangeFetchAndCaptureService
+
+  App\Exchanging\ServiceInterface\ExchangeRateFreshnessServiceInterface:
+    alias: App\Exchanging\Service\ExchangeRateFreshnessService
+
+  App\Exchanging\ServiceInterface\ExchangeAppliedRateAuditServiceInterface:
+    alias: App\Exchanging\Service\ExchangeAppliedRateAuditService
+
+  App\Exchanging\ServiceInterface\ExchangeDemoRateSeedServiceInterface:
+    alias: App\Exchanging\Service\ExchangeDemoRateSeedService
+
+  App\Exchanging\ServiceInterface\ExchangeRateReadServiceInterface:
+    alias: App\Exchanging\Service\ExchangeRateReadService
+
+  App\Exchanging\ServiceInterface\ExchangeOperationalStatusServiceInterface:
+    alias: App\Exchanging\Service\ExchangeOperationalStatusService
+
+  App\Exchanging\ServiceInterface\ExchangeHealthCheckServiceInterface:
+    alias: App\Exchanging\Service\ExchangeHealthCheckService
+
+  App\Exchanging\Service\ExchangeQuoteService:
+    arguments:
+      $enforceRateFreshnessOnQuote: '%exchanging.enforce_rate_freshness_on_quote%'
+
+  App\Exchanging\Service\ExchangeRateFreshnessService:
+    arguments:
+      $maxAgeSeconds: '%exchanging.rate_freshness_max_age_seconds%'
+
+  App\Exchanging\Service\ExchangeOperationalStatusService:
+    arguments:
+      $rateFreshnessMaxAgeSeconds: '%exchanging.rate_freshness_max_age_seconds%'
+      $enforceRateFreshnessOnQuote: '%exchanging.enforce_rate_freshness_on_quote%'
+      $httpJsonProviderCode: '%exchanging.http_json_provider_code%'
+      $httpJsonEndpointUrl: '%exchanging.http_json_endpoint_url%'
+
+  App\Exchanging\Provider\ExchangeRepositoryRateProvider:
+    tags:
+      - { name: app.exchanging_rate_provider, priority: 100 }
+
+  App\Exchanging\Provider\ExchangeStaticRateProvider:
+    tags:
+      - { name: app.exchanging_rate_provider, priority: -1000 }
+
+  App\Exchanging\Service\ExchangeRateProviderRegistry:
+    arguments:
+      $providers: !tagged_iterator app.exchanging_rate_provider
+
+  App\Exchanging\Provider\ExchangeHttpJsonRemoteRateProvider:
+    arguments:
+      $providerCode: '%exchanging.http_json_provider_code%'
+      $endpointUrl: '%exchanging.http_json_endpoint_url%'
+    tags:
+      - { name: app.exchanging_remote_rate_provider, priority: 100 }
+
+  App\Exchanging\Provider\ExchangeManualRemoteRateProvider:
+    tags:
+      - { name: app.exchanging_remote_rate_provider, priority: -1000 }
+
+  App\Exchanging\Service\ExchangeRemoteRateProviderRegistry:
+    arguments:
+      $providers: !tagged_iterator app.exchanging_remote_rate_provider

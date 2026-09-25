@@ -1,0 +1,29 @@
+= Exchanging Wave 40 Runtime Env Fallback Report
+
+== Modified
+
+* `bin/console`
+* `public/index.php`
+
+== Added
+
+* `docs/runtime/exchanging-runtime-env-fallback.adoc`
+
+== Purpose
+
+Wave 40 fixes standalone runtime startup when `.env` is not loaded and `DATABASE_URL` is missing.
+
+== Runtime code changes
+
+Yes. Runtime bootstrap fallback was added.
+
+== Expected check
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----

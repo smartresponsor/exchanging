@@ -1,0 +1,40 @@
+= Exchanging Runtime LazyGhost Preflight
+
+== Purpose
+
+This preflight verifies that standalone runtime config does not explicitly enable Doctrine LazyGhost.
+
+== Error being guarded
+
+[source,text]
+----
+Symfony LazyGhost is not available. Please install the "symfony/var-exporter" package version 6.4 or 7 to use this feature or enable PHP 8.4 native lazy objects.
+----
+
+== Command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-runtime-config-preflight.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Expected result
+
+[source,text]
+----
+[PASS] No config YAML enables Doctrine LazyGhost explicitly.
+----
+
+== Then clear cache
+
+[source,powershell]
+----
+Remove-Item -Recurse -Force var\cache -ErrorAction SilentlyContinue
+php bin/console cache:clear
+php bin/console list exchanging
+----
+
+== Canon
+
+This fix keeps standalone runtime independent from host Doctrine lazy-object strategy.

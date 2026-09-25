@@ -1,0 +1,48 @@
+= Exchanging VarExporter Runtime Dependency
+
+== Problem
+
+Standalone runtime can fail with:
+
+[source,text]
+----
+Symfony LazyGhost is not available. Please install the "symfony/var-exporter" package version 6.4 or 7 to use this feature or enable PHP 8.4 native lazy objects.
+----
+
+If runtime config preflight passes and no YAML explicitly enables LazyGhost, the active Doctrine/ORM stack still requires LazyGhost support.
+
+== Fix
+
+Install Symfony VarExporter in the Exchanging runtime repository:
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+composer require "symfony/var-exporter:^7.0"
+----
+
+Or use the helper:
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-require-var-exporter.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Verification
+
+[source,powershell]
+----
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----
+
+== Why this is preferred
+
+When no config explicitly enables LazyGhost, removing YAML cannot fix the failure. Installing `symfony/var-exporter` provides the runtime support expected by Doctrine/Symfony.
+
+== Canon
+
+This preserves dual-mode runtime and does not introduce a sandbox.

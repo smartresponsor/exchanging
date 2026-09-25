@@ -1,0 +1,19 @@
+= Exchanging Wave 34 NBU Proof Result Capture Report
+
+== Added
+
+* `docs/proof/exchanging-nbu-provider-proof-result.example.adoc`
+* `tools/proof/exchanging-nbu-proof-result-bootstrap.ps1`
+* `docs/proof/exchanging-nbu-proof-result-capture.adoc`
+
+== Purpose
+
+Wave 34 adds result-capture support for the optional NBU proof flow.
+
+== Runtime code changes
+
+None.
+
+== Proof execution
+
+Not claimed.

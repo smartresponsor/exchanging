@@ -1,0 +1,75 @@
+= Exchanging Consumer Boundaries
+
+== Purpose
+
+This document defines how consumer components should integrate with Exchanging without moving their own responsibilities into this component.
+
+== Exchanging owns
+
+* currency pair lookup
+* exchange rate snapshots
+* quote calculation
+* provider fetch/capture
+* freshness policy
+* applied-rate audit payload construction
+
+== Exchanging does not own
+
+* product pricing
+* invoice totals
+* payment authorization/capture
+* tax calculation
+* currency metadata master data
+
+== Consumer components
+
+=== Currencing
+
+Currencing owns currency metadata:
+
+* ISO codes
+* minor units
+* display names
+* formatting metadata
+* money normalization
+
+Exchanging should consume currency codes and return conversion/rate information.
+
+=== Ordering
+
+Ordering may request quote data and store applied-rate audit payloads on order-related records.
+
+Ordering still owns:
+
+* cart/order totals
+* order lifecycle
+* order pricing composition
+
+=== Paying
+
+Paying may request quote data for payment normalization or settlement reporting.
+
+Paying still owns:
+
+* payment intent
+* authorization
+* capture
+* refund
+* payment provider lifecycle
+
+=== Taxating
+
+Taxating may request quote data for tax normalization or audit.
+
+Taxating still owns:
+
+* taxable basis
+* tax jurisdiction rules
+* tax line calculation
+* tax evidence package
+
+== Canon
+
+Consumer integration should use service interfaces under `src/ServiceInterface/Exchange`.
+
+No `/src/Domain/` layer is introduced.

@@ -1,0 +1,31 @@
+= Exchanging Wave 42 Runtime Config Isolation Report
+
+== Modified
+
+* `src/Kernel.php`
+
+== Added
+
+* `docs/runtime/exchanging-runtime-config-isolation.adoc`
+
+== Purpose
+
+Wave 42 prevents host/bundle-oriented YAML files under `config/packages/` from leaking into standalone runtime.
+
+== Fix target
+
+[source,text]
+----
+Symfony LazyGhost is not available.
+----
+
+== Expected check
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----

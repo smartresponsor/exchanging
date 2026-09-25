@@ -1,0 +1,30 @@
+= Exchanging Wave 39 Dual-Mode Runtime Report
+
+== Added
+
+* `bin/console`
+* `public/index.php`
+* `src/Kernel.php`
+* `config/bundles.php`
+* `config/packages/framework.yaml`
+* `config/packages/exchange_doctrine_runtime.yaml`
+* `config/packages/exchanging_runtime_provider.yaml`
+* `config/services/exchanging_runtime.yaml`
+* `config/routes/exchanging_runtime.yaml`
+* `.env`
+* `docs/runtime/exchanging-dual-mode-runtime.adoc`
+* `docs/runtime/exchanging-symlink-bundle-usage.adoc`
+
+== Purpose
+
+Wave 39 makes Exchanging directly runtime-capable without using a sandbox while preserving bundle/library usage.
+
+== Runtime code changes
+
+Yes. A Symfony runtime shell was added.
+
+== Important
+
+This does not remove bundle mode.
+
+`App\Exchanging\ExchangingBundle` remains the reusable bundle entrypoint.

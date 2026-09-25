@@ -1,0 +1,24 @@
+= Exchanging Wave 23 Demo Seed Report
+
+== Added
+
+* `src/DTO/ExchangeDemoRateSeedDTO.php`
+* `src/ServiceInterface/Exchange/ExchangeDemoRateSeedServiceInterface.php`
+* `src/Service/Exchange/ExchangeDemoRateSeedService.php`
+* `src/Command/Exchange/ExchangeDemoRateSeedCommand.php`
+* `docs/demo/exchanging-demo-rates.adoc`
+
+== Purpose
+
+Wave 23 adds deterministic demo rate seeding for local host-app smoke flows.
+
+== Command
+
+[source,powershell]
+----
+php bin/console exchanging:demo:seed-rates
+----
+
+== Runtime note
+
+This command writes demo rates through the existing `ExchangeRateCaptureServiceInterface`, so it uses the same validation and persistence path as normal capture.

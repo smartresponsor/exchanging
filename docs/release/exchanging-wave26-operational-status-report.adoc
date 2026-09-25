@@ -1,0 +1,28 @@
+= Exchanging Wave 26 Operational Status Report
+
+== Added
+
+* `src/DTO/ExchangeOperationalStatusDTO.php`
+* `src/ServiceInterface/Exchange/ExchangeOperationalStatusServiceInterface.php`
+* `src/Service/Exchange/ExchangeOperationalStatusService.php`
+* `src/Controller/Exchange/ExchangeOperationalStatusController.php`
+* `src/Command/Exchange/ExchangeOperationalStatusCommand.php`
+* `docs/status/exchanging-operational-status.adoc`
+
+== Purpose
+
+Wave 26 adds a lightweight operational status surface for host-app diagnostics.
+
+== Endpoint
+
+[source,text]
+----
+GET /exchanging/status
+----
+
+== Command
+
+[source,powershell]
+----
+php bin/console exchanging:status
+----

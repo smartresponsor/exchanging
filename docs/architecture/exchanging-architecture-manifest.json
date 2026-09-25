@@ -1,0 +1,45 @@
+{
+  "component": "Exchanging",
+  "package": "exchanging/exchange",
+  "namespace": "App\\Exchanging",
+  "architecture": {
+    "style": "Symfony-oriented component",
+    "forbidden": [
+      "/src/Domain/",
+      "ports-and-adapters architecture"
+    ],
+    "layers": [
+      "Command",
+      "Controller",
+      "DependencyInjection",
+      "Dto",
+      "Entity",
+      "Exception",
+      "Repository",
+      "Service",
+      "ServiceInterface",
+      "ValueObject"
+    ],
+    "bundle": "App\\Exchanging\\ExchangingBundle",
+    "extension": "App\\Exchanging\\DependencyInjection\\ExchangingExtension"
+  },
+  "doctrine": {
+    "tablePrefix": "exchange_",
+    "tables": [
+      "exchange_exchange",
+      "exchange_rate"
+    ]
+  },
+  "integration": {
+    "manualImports": [
+      "config/services/exchange_services.yaml",
+      "config/packages/exchange_provider.yaml",
+      "config/packages/exchange_doctrine.yaml",
+      "config/routes/exchange_routes.yaml"
+    ],
+    "bundleLoads": [
+      "config/services/exchange_services.yaml",
+      "config/packages/exchange_provider.yaml"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+= Exchanging Runtime Env Fallback
+
+== Problem
+
+Standalone runtime can fail before container compilation when `DATABASE_URL` is not present in the process environment.
+
+Example:
+
+[source,text]
+----
+Environment variable not found: "DATABASE_URL".
+----
+
+== Resolution
+
+`bin/console` and `public/index.php` now provide standalone fallback values for:
+
+* `APP_ENV`
+* `APP_DEBUG`
+* `APP_SECRET`
+* `DATABASE_URL`
+
+== Default database
+
+[source,text]
+----
+sqlite:///%kernel.project_dir%/var/exchanging_runtime.sqlite
+----
+
+== Why fallback exists
+
+The fallback keeps Exchanging directly executable even when `symfony/dotenv` is not installed or `.env` is not loaded by the host process.
+
+== Override
+
+Any real process environment value still wins.
+
+Example:
+
+[source,powershell]
+----
+$env:DATABASE_URL = "sqlite:///D:/PhpstormProjects/www/Exchanging/var/exchanging_runtime.sqlite"
+php bin/console cache:clear
+----
+
+== Canon
+
+This keeps standalone runtime support without introducing a sandbox.

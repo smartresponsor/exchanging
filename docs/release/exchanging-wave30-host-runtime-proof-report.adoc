@@ -1,0 +1,26 @@
+= Exchanging Wave 30 Host Runtime Proof Report
+
+== Added
+
+* `tools/proof/exchanging-host-runtime-proof.ps1`
+* `docs/proof/exchanging-host-runtime-proof.adoc`
+
+== Purpose
+
+Wave 30 adds a repeatable host runtime proof sequence for Exchanging.
+
+== Runtime code changes
+
+None.
+
+== Proof command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-host-runtime-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Notes
+
+This wave provides the proof runner. It does not claim the proof has already been executed in the user's local host app.

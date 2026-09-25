@@ -1,0 +1,33 @@
+= Exchanging Wave 32 NBU Provider Report
+
+== Added
+
+* `src/Service/Exchange/ExchangeNbuRemoteRateProvider.php`
+* `config/packages/exchanging_nbu_provider.yaml`
+* `docs/provider/exchanging-nbu-provider.adoc`
+* `docs/provider/exchanging-provider-decision-matrix.adoc`
+
+== Purpose
+
+Wave 32 adds an optional provider-specific NBU remote rate surface.
+
+== Runtime code changes
+
+Adds a new optional provider class only.
+
+== Activation
+
+The provider is activated only when the host imports:
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/packages/exchanging_nbu_provider.yaml' }
+----
+
+== Canon
+
+* namespace remains `App\Exchanging`
+* provider lives under `src/Service/Exchange`
+* no `/src/Domain/`
+* no ports-and-adapters architecture

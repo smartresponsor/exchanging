@@ -1,0 +1,27 @@
+= Exchanging Wave 47 Symfony 8 Doctrine Alignment Report
+
+== Modified
+
+* `tools/runtime/exchanging-upgrade-symfony8-only.ps1`
+* `tools/runtime/exchanging-symfony8-composer-preflight.ps1`
+* `docs/runtime/exchanging-symfony8-only-composer.adoc`
+
+== Added
+
+* `docs/release/exchanging-wave47-symfony8-doctrine-alignment-report.adoc`
+
+== Purpose
+
+Wave 47 fixes Symfony 8 migration after Composer reported that `doctrine/doctrine-bundle 2.18.2` blocks Symfony 8.
+
+== Fixes
+
+* Adds DoctrineBundle `^3.2`.
+* Adds DBAL `^4.0`.
+* Adds Persistence `^4.0`.
+* Uses single-quoted Composer constraints in PowerShell.
+* Keeps `--with-all-dependencies`.
+
+== Runtime code changes
+
+None.

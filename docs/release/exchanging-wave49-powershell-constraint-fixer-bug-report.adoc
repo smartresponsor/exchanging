@@ -1,0 +1,46 @@
+= Exchanging Wave 49 PowerShell Constraint Fixer Bug Report
+
+== Modified
+
+* `tools/runtime/exchanging-fix-exact-composer-constraints.ps1`
+
+== Added
+
+* `tools/runtime/exchanging-update-symfony8-targeted.ps1`
+
+== Purpose
+
+Wave 49 fixes a PowerShell parser error in the exact Composer constraint fixer.
+
+== Fixed error
+
+[source,text]
+----
+Invalid variable reference. With ':' after variable name.
+----
+
+The broken expression was effectively:
+
+[source,powershell]
+----
+"$name:"
+----
+
+It is now written as:
+
+[source,powershell]
+----
+"${name}:"
+----
+
+== Targeted update
+
+A targeted update helper was added to avoid a broad full-project Composer update.
+
+== Recommended command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-update-symfony8-targeted.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----

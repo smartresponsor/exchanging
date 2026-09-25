@@ -1,0 +1,72 @@
+{
+  "name": "exchanging/exchange",
+  "description": "Exchanging component for currency exchange rates, providers, historical rates, and conversion quotes.",
+  "type": "library",
+  "license": "proprietary",
+  "require": {
+    "brick/math": "^0.18 || ^0.20",
+    "collectioning/collection": "dev-master",
+    "cruding/crud": "dev-master",
+    "easycorp/easyadmin-bundle": "^5.0",
+    "interfacing/interface": "dev-master",
+    "objecting/object": "dev-master",
+    "tabling/table": "dev-master",
+    "viewing/view": "dev-master",
+    "php": "^8.4",
+    "doctrine/dbal": "^4.0",
+    "doctrine/doctrine-bundle": "^3.2",
+    "doctrine/doctrine-migrations-bundle": "^4.0",
+    "doctrine/orm": "^3.3 || ^4.0",
+    "symfony/config": "^8.1",
+    "symfony/console": "^8.1",
+    "symfony/dependency-injection": "^8.1",
+    "symfony/framework-bundle": "^8.1",
+    "symfony/http-client": "^8.1",
+    "symfony/http-foundation": "^8.1",
+    "symfony/http-kernel": "^8.1",
+    "symfony/routing": "^8.1",
+    "symfony/uid": "^8.1",
+    "symfony/yaml": "^8.1",
+    "doctrine/persistence": "^4.0",
+    "symfony/runtime": "^8.1",
+    "symfony/dotenv": "^8.1",
+    "symfony/var-exporter": "^8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Exchanging\\": "src/"
+    }
+  },
+  "extra": {
+    "symfony": {
+      "require": "8.1.*",
+      "bundles": {
+        "App\\Exchanging\\ExchangingBundle": [
+          "all"
+        ]
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "symfony/runtime": true
+    },
+    "optimize-autoloader": true,
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "require-dev": {
+    "gating/gate": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/smartresponsor/gating.git",
+      "no-api": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+= Exchanging Ordering Hook
+
+== Use case
+
+Ordering asks Exchanging for a quote and stores the applied-rate audit payload next to the order decision.
+
+== Recommended service interfaces
+
+* `ExchangeQuoteServiceInterface`
+* `ExchangeAppliedRateAuditServiceInterface`
+
+== Flow
+
+. Ordering builds `ExchangeQuoteRequestDto`.
+. Exchanging returns `ExchangeQuoteResultDto`.
+. Ordering builds `ExchangeAppliedRateAuditRequestDto`.
+. Exchanging returns immutable `ExchangeAppliedRateAuditResultDto`.
+. Ordering persists `auditKey` and `auditPayload` on its own order-side model.
+
+== Boundary
+
+Exchanging must not own order totals or order lifecycle.

@@ -1,0 +1,25 @@
+= Exchanging Wave 25 Rate Read API Report
+
+== Added
+
+* `src/Controller/Exchange/ExchangeRateLatestController.php`
+* `docs/api/exchanging-rate-read-api.adoc`
+
+== Modified
+
+* `docs/api/openapi/exchanging.openapi.yaml`
+* `docs/api/exchanging-api-contract.adoc`
+* `README.adoc`
+* `docs/index.adoc`
+* `docs/manifest/exchanging-component-manifest.json`
+
+== Purpose
+
+Wave 25 exposes the latest-rate read/query surface through HTTP.
+
+== Endpoint
+
+[source,text]
+----
+GET /exchanging/rates/latest
+----

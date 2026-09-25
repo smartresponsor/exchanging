@@ -1,0 +1,48 @@
+= Exchanging NBU Response Normalizer
+
+== Purpose
+
+`ExchangeNbuRateResponseNormalizer` centralizes parsing and validation of NBU response payloads.
+
+== Input
+
+* raw NBU payload
+* base currency code
+* optional fallback date
+
+== Output
+
+`ExchangeNbuRateNormalizedResponseDTO`
+
+Fields:
+
+* `rateValue`
+* `rateDate`
+* `rawRow`
+
+== Validations
+
+* payload must be an array;
+* first row must exist;
+* rate must be scalar;
+* rate must be numeric;
+* exchange date is parsed from `d.m.Y`;
+* fallback date is used when response date is unavailable.
+
+== Reason for extraction
+
+The provider class remains focused on:
+
+* supports check;
+* NBU query construction;
+* HTTP fetch;
+* mapping normalized response into `ExchangeRemoteRateFetchResultDTO`.
+
+The normalizer owns response validation/parsing only.
+
+== Canon
+
+* service stays in `src/Service/Exchange`;
+* DTO stays in `src/DTO`;
+* no `/src/Domain/`;
+* no ports-and-adapters architecture.

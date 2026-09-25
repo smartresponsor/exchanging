@@ -1,0 +1,170 @@
+{
+  "name": "exchanging/exchange",
+  "description": "Exchanging component for currency exchange rates, providers, historical rates, and conversion quotes.",
+  "type": "library",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "require": {
+    "brick/math": "^0.18 || ^0.20",
+    "collectioning/collection": "dev-master",
+    "cruding/crud": "dev-master",
+    "easycorp/easyadmin-bundle": "^5.0",
+    "interfacing/interface": "dev-master",
+    "objecting/object": "dev-master",
+    "tabling/table": "dev-master",
+    "viewing/view": "dev-master",
+    "php": "^8.4",
+    "doctrine/dbal": "^4.0",
+    "doctrine/doctrine-bundle": "^3.2",
+    "doctrine/doctrine-migrations-bundle": "^4.0",
+    "doctrine/orm": "^3.3 || ^4.0",
+    "symfony/config": "^8.1",
+    "symfony/console": "^8.1",
+    "symfony/dependency-injection": "^8.1",
+    "symfony/framework-bundle": "^8.1",
+    "symfony/http-client": "^8.1",
+    "symfony/http-foundation": "^8.1",
+    "symfony/http-kernel": "^8.1",
+    "symfony/routing": "^8.1",
+    "symfony/uid": "^8.1",
+    "symfony/yaml": "^8.1",
+    "doctrine/persistence": "^4.0",
+    "symfony/runtime": "^8.1",
+    "symfony/dotenv": "^8.1",
+    "symfony/var-exporter": "^8.1"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.95",
+    "phpstan/phpstan": "^2.2",
+    "phpstan/phpstan-doctrine": "^2.0",
+    "phpstan/phpstan-symfony": "^2.0",
+    "phpunit/phpunit": "^12.0",
+    "symfony/panther": "^2.4",
+    "symfony/test-pack": "^1.2",
+    "gating/gate": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Exchanging\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit -c phpunit.xml.dist",
+    "test:evidence": [
+      "@test",
+      "npm test",
+      "@php tool/verify/exchange-behavioral-evidence.php"
+    ],
+    "test:coverage": [
+      "@php -r \"if (!is_dir('var/coverage')) { mkdir('var/coverage', 0777, true); }\"",
+      "@php -d xdebug.mode=coverage vendor/bin/phpunit -c phpunit.xml.dist --path-coverage --coverage-text=var/coverage/summary.txt"
+    ],
+    "test:behavioral-coverage": "@php tool/coverage/exchange-behavioral-coverage.php",
+    "phpstan": "phpstan analyse -c phpstan.neon.dist --memory-limit=1G",
+    "schema:validate": "@php bin/console doctrine:schema:validate --env=test --skip-sync",
+    "schema:parity": "@php tool/schema/exchange-schema-parity.php",
+    "cs:check": "php-cs-fixer fix --dry-run --diff --verbose",
+    "cs:fix": "php-cs-fixer fix --verbose",
+    "validate:prod": "composer validate --strict --no-check-all composer.prod.json",
+    "gate": "@php vendor/bin/gating check --target=.",
+    "quality": [
+      "@cs:check",
+      "@phpstan",
+      "@test",
+      "@gate"
+    ]
+  },
+  "extra": {
+    "symfony": {
+      "require": "8.1.*",
+      "bundles": {
+        "App\\Exchanging\\ExchangingBundle": [
+          "all"
+        ]
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "symfony/runtime": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../Collectioning",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "collectioning/collection": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Cruding",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "cruding/crud": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Interfacing",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "interfacing/interface": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Objecting",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "objecting/object": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Tabling",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "tabling/table": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Viewing",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "viewing/view": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Gating",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "gating/gate": "dev-master"
+        }
+      }
+    }
+  ]
+}

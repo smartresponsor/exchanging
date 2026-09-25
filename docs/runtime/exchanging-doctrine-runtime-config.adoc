@@ -1,0 +1,51 @@
+= Exchanging Doctrine Runtime Config
+
+== Purpose
+
+The standalone Exchanging runtime uses a minimal Doctrine configuration so the component can boot without host-app assumptions.
+
+== Runtime DBAL
+
+[source,yaml]
+----
+doctrine:
+  dbal:
+    url: '%env(resolve:DATABASE_URL)%'
+----
+
+Default fallback:
+
+[source,text]
+----
+sqlite:///%kernel.project_dir%/var/exchanging_runtime.sqlite
+----
+
+== Runtime ORM mapping
+
+[source,yaml]
+----
+mappings:
+  Exchanging:
+    type: attribute
+    is_bundle: false
+    dir: '%kernel.project_dir%/src/Entity'
+    prefix: 'App\Exchanging\Entity'
+    alias: Exchanging
+----
+
+== Lazy ghost objects
+
+The standalone runtime config intentionally does not set:
+
+[source,yaml]
+----
+enable_lazy_ghost_objects: true
+----
+
+Reason: this setting requires either `symfony/var-exporter` support or native lazy-object availability. The direct component runtime should boot with the currently installed package set.
+
+== Host apps
+
+Host applications may still choose their own Doctrine lazy-object strategy.
+
+This standalone runtime file is not a mandate for consuming apps.

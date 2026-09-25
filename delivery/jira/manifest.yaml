@@ -1,0 +1,28 @@
+schema_version: 1
+component: Exchanging
+package: exchanging/exchange
+namespace: App\Exchanging
+transport_profile: jira
+csv: import.csv
+required_header:
+  - Issue Type
+  - Summary
+  - Description
+  - Priority
+  - Labels
+  - Component/s
+  - Epic Name
+  - External ID
+  - Parent External ID
+  - Acceptance Criteria
+issue_key_prefix: EXCH-RC
+canonical_constraints:
+  - no /src/Domain/
+  - no ports-and-adapters architecture
+  - Symfony-oriented src layers only
+  - App\Exchanging namespace
+  - exchange_ table prefix
+artifacts:
+  openapi: docs/api/openapi/exchanging.openapi.yaml
+  component_manifest: docs/manifest/exchanging-component-manifest.json
+  schema_manifest: docs/schema/exchanging-schema-manifest.adoc

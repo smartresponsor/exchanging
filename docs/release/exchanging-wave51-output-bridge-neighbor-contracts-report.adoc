@@ -1,0 +1,33 @@
+= Exchanging Wave 51 Output Bridge Neighbor Contracts Report
+
+== Added
+
+* `src/DTO/ExchangeTemplateContextDTO.php`
+* `src/DTO/ExchangeTemplateContextRequestDTO.php`
+* `src/DTO/ExchangeNeighborHookContextDTO.php`
+* `src/ServiceInterface/Exchange/ExchangeTemplateContextProviderInterface.php`
+* `src/ServiceInterface/Exchange/ExchangeNeighborHookContextProviderInterface.php`
+* `src/ServiceInterface/Exchange/ExchangeCurrencyHookInterface.php`
+* `src/ServiceInterface/Exchange/ExchangeTaxationHookInterface.php`
+* `src/ServiceInterface/Exchange/ExchangeBillingHookInterface.php`
+* `src/ServiceInterface/Exchange/ExchangePayingHookInterface.php`
+* `src/ServiceInterface/Exchange/ExchangeOrderingHookInterface.php`
+* `src/Service/Exchange/ExchangeTemplateContextProvider.php`
+* `src/Service/Exchange/ExchangeNeighborHookContextProvider.php`
+* `docs/contract/exchanging-output-template-context-contract.adoc`
+* `docs/contract/exchanging-neighbor-hook-contracts.adoc`
+* `docs/bridge/exchanging-interfacing-bridge-contract.adoc`
+
+== Purpose
+
+Wave 51 adds outbound contracts for Bridge/Interfacing and neighboring components.
+
+== Runtime code changes
+
+Yes. New DTOs/services/contracts were added.
+
+== Boundary
+
+No `/src/Domain/`.
+
+No ports/adapters pattern.

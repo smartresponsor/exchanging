@@ -1,0 +1,33 @@
+= Exchanging Jira Delivery
+
+== Purpose
+
+This directory exposes a Jira-ready import surface for the Exchanging component.
+
+== Files
+
+* `manifest.yaml` — machine-readable delivery manifest
+* `import.csv` — Jira CSV import payload
+
+== Import profile
+
+This delivery follows the platform semantic-schema-first direction:
+
+* Jira is a transport profile.
+* The component manifest remains the canonical integration description.
+* The CSV is an import surface, not the source of truth.
+
+== Expected CSV header
+
+[source,csv]
+----
+Issue Type,Summary,Description,Priority,Labels,Component/s,Epic Name,External ID,Parent External ID,Acceptance Criteria
+----
+
+== Canon checks
+
+* namespace: `App\Exchanging`
+* package: `exchanging/exchange`
+* table prefix: `exchange_`
+* forbidden: `/src/Domain/`
+* forbidden: ports-and-adapters architecture

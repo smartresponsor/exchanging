@@ -1,0 +1,28 @@
+= Exchanging Wave 48 Symfony 8 Runtime Config Fix Report
+
+== Modified
+
+* `tools/runtime/exchanging-upgrade-symfony8-only.ps1`
+* `config/packages/exchange_doctrine_runtime.yaml`
+
+== Added
+
+* `tools/runtime/exchanging-fix-exact-composer-constraints.ps1`
+* `docs/runtime/exchanging-symfony8-doctrine-runtime-config.adoc`
+
+== Purpose
+
+Wave 48 fixes the Symfony 8 migration aftermath.
+
+== Fixes
+
+* Composer constraints accidentally written as exact `8.0`, `3.2`, `4.0`.
+* DoctrineBundle 3.x rejecting `auto_generate_proxy_classes` in runtime config.
+
+== Runtime code changes
+
+No PHP runtime code changes.
+
+== Runtime config changes
+
+Yes.

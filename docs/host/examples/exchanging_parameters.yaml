@@ -1,0 +1,5 @@
+parameters:
+  exchanging.http_json_provider_code: 'http-json'
+  exchanging.http_json_endpoint_url: ''
+  exchanging.rate_freshness_max_age_seconds: 86400
+  exchanging.enforce_rate_freshness_on_quote: false

@@ -1,0 +1,63 @@
+= Exchanging Symfony 8 Doctrine Runtime Config
+
+== Problem
+
+After aligning to DoctrineBundle 3.x / Symfony 8, this option is no longer accepted in the runtime Doctrine entity manager config:
+
+[source,yaml]
+----
+auto_generate_proxy_classes: true
+----
+
+Observed error:
+
+[source,text]
+----
+Unrecognized option "auto_generate_proxy_classes" under "doctrine.orm.entity_managers.default".
+----
+
+== Runtime config
+
+The standalone runtime config now keeps only runtime-safe ORM keys:
+
+[source,yaml]
+----
+doctrine:
+  dbal:
+    url: '%env(resolve:DATABASE_URL)%'
+  orm:
+    controller_resolver:
+      auto_mapping: false
+    mappings:
+      Exchanging:
+        type: attribute
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Entity'
+        prefix: 'App\Exchanging\Entity'
+        alias: Exchanging
+----
+
+== Exact Composer constraints
+
+If Composer previously wrote exact constraints such as `8.0`, `3.2`, or `4.0`, run:
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-fix-exact-composer-constraints.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+
+composer update --with-all-dependencies
+----
+
+== Verification
+
+[source,powershell]
+----
+Remove-Item -Recurse -Force var\cache -ErrorAction SilentlyContinue
+composer dump-autoload
+composer validate
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----

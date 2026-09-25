@@ -1,0 +1,45 @@
+= Exchanging Release-Candidate Readiness
+
+== Current milestone
+
+Wave 17 establishes import/release readiness around the component surface.
+
+== Implemented architectural/business surface
+
+* Composer package identity: `exchanging/exchange`
+* Namespace: `App\Exchanging`
+* Doctrine entities and repositories
+* Doctrine migration and schema manifest
+* Quote service
+* Rate capture service
+* Repository-backed provider
+* Remote provider registry
+* Generic HTTP JSON provider skeleton
+* Fetch-and-capture flow
+* Request validation
+* Rate freshness policy
+* Optional quote freshness enforcement
+* Applied-rate audit payload service
+* HTTP controllers and route import
+* OpenAPI contract
+* Console smoke/proof commands
+* Machine-readable component manifest
+* Jira-ready delivery surface
+
+== Known host-app wiring points
+
+* `config/services/exchange_services.yaml`
+* `config/packages/exchange_provider.yaml`
+* `config/packages/exchange_doctrine.yaml`
+* `config/routes/exchange_routes.yaml`
+
+== RC verification
+
+The current RC hardening pass provides executable proof for Composer validation/audit, PHPUnit, persistent path/branch coverage, PHPStan level 8, Symfony container/YAML linting, standalone status/health commands, Doctrine mapping validation, npm audit, and a Playwright real-browser health smoke test. Production provider certification and host-app deployment remain environment-specific integration concerns rather than Exchanging RC blockers.
+
+== Next candidate areas
+
+* provider-specific implementation, for example NBU, ECB, OpenExchangeRates, or internal source
+* admin/workbench UI hooks
+* API docs publishing in host app
+* integration review with Ordering, Paying, Taxating, Currencing

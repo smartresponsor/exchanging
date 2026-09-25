@@ -1,0 +1,47 @@
+{
+  "component": "Exchanging",
+  "package": "exchanging/exchange",
+  "namespace": "App\\Exchanging",
+  "wave": 28,
+  "gate": "release_candidate_self_audit_refresh",
+  "required_files": [
+    "composer.json",
+    "src/ExchangingBundle.php",
+    "src/DependencyInjection/ExchangingExtension.php",
+    "config/services/exchange_services.yaml",
+    "config/routes/exchange_routes.yaml",
+    "config/packages/exchange_doctrine.yaml",
+    "config/packages/exchange_provider.yaml",
+    "docs/api/openapi/exchanging.openapi.yaml",
+    "docs/manifest/exchanging-component-manifest.json",
+    "docs/schema/exchanging-schema-manifest.adoc",
+    "docs/status/exchanging-operational-status.adoc",
+    "docs/health/exchanging-health-check.adoc",
+    "docs/read/exchanging-rate-read-surface.adoc",
+    "delivery/jira/manifest.yaml",
+    "delivery/jira/import.csv",
+    "README.adoc"
+  ],
+  "required_routes": [
+    "POST /exchanging/quote",
+    "POST /exchanging/rates/capture",
+    "GET /exchanging/rates/latest",
+    "GET /exchanging/status",
+    "GET /exchanging/health"
+  ],
+  "required_commands": [
+    "exchanging:rate:capture",
+    "exchanging:quote",
+    "exchanging:rate:fetch",
+    "exchanging:rate:fetch-capture",
+    "exchanging:demo:seed-rates",
+    "exchanging:rate:latest",
+    "exchanging:status",
+    "exchanging:health"
+  ],
+  "forbidden_paths": [
+    "src/Domain",
+    "Domain"
+  ],
+  "non_destructive": true
+}

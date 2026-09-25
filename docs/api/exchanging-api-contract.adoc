@@ -1,0 +1,44 @@
+= Exchanging API Contract
+
+== OpenAPI
+
+The OpenAPI contract is available at:
+
+[source,text]
+----
+docs/api/openapi/exchanging.openapi.yaml
+----
+
+== Endpoints
+
+* `POST /exchanging/quote`
+* `POST /exchanging/rates/capture`
+* `GET /exchanging/rates/latest`
+* `GET /exchanging/status`
+* `GET /exchanging/health`
+
+== Error model
+
+All currently exposed errors use:
+
+[source,json]
+----
+{
+  "error": "message"
+}
+----
+
+== Status codes
+
+* `200` success for quote, latest-rates read, status, and healthy health check
+* `201` capture success
+* `400` invalid request
+* `404` rate not found
+* `409` stale rate when quote freshness enforcement is enabled
+* `503` unhealthy health check
+
+== Canon
+
+The API layer uses Symfony controllers under `src/Controller/Exchange`.
+DTOs remain under `src/DTO`.
+No `/src/Domain/` layer is introduced.

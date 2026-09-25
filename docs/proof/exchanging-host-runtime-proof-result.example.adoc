@@ -1,0 +1,87 @@
+= Exchanging Host Runtime Proof Result Example
+
+== Proof metadata
+
+[cols="1,2"]
+|===
+| Field | Value
+
+| Component
+| Exchanging
+
+| Package
+| `exchanging/exchange`
+
+| Namespace
+| `App\Exchanging`
+
+| Host root
+| `D:\PhpstormProjects\www\Exchanging`
+
+| Proof date
+| 2026-05-03
+
+| Operator
+| local
+
+| Branch/commit
+| local working tree
+
+| Patch wave baseline
+| Wave 30
+|===
+
+== Result summary
+
+[cols="1,1,3"]
+|===
+| Step | Status | Notes
+
+| composer validate
+| PASS
+| Composer package metadata is readable.
+
+| composer dump-autoload
+| PASS
+| Autoload regenerated.
+
+| php bin/console cache:clear
+| PASS
+| Container compiled.
+
+| php bin/console debug:router \| findstr exchanging
+| PASS
+| Exchanging routes visible.
+
+| php bin/console debug:container App\Exchanging\ServiceInterface\ExchangeQuoteServiceInterface
+| PASS
+| Quote service interface alias visible.
+
+| php bin/console doctrine:mapping:info \| findstr Exchanging
+| PASS
+| Doctrine mapping visible.
+
+| php bin/console exchanging:status
+| PASS
+| Status command runs.
+
+| php bin/console exchanging:health
+| PASS
+| Health command returns success.
+
+| php bin/console exchanging:demo:seed-rates
+| PASS
+| Demo rates seeded.
+
+| php bin/console exchanging:rate:latest --base=USD --quote=UAH --provider=demo --limit=10
+| PASS
+| Latest demo rates visible.
+
+| php bin/console exchanging:quote USD UAH 100
+| PASS
+| Quote returns converted amount.
+|===
+
+== Final proof status
+
+`PASS`

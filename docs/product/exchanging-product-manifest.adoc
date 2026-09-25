@@ -1,0 +1,40 @@
+= Exchanging Product Manifest
+
+== Machine-readable file
+
+[source,text]
+----
+docs/product/exchanging-product-manifest.json
+----
+
+== Product capability
+
+Currency exchange rates and conversion quote surface.
+
+== Owns
+
+* exchange pairs
+* current and historical rates
+* rate capture
+* remote provider fetch
+* fetch-and-capture
+* quote calculation
+* freshness policy
+* applied-rate audit payload construction
+
+== Does not own
+
+* currency metadata master data
+* pricing
+* order lifecycle
+* payment lifecycle
+* tax rules
+* tax line calculation
+
+== Primary user flows
+
+* capture manual rate
+* fetch remote rate
+* fetch and capture remote rate
+* calculate quote
+* build applied-rate audit payload

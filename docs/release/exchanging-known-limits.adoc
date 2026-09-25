@@ -1,0 +1,46 @@
+= Exchanging Known Limits
+
+== Runtime proof
+
+Host-app runtime proof is not claimed in this checkpoint.
+
+Required future proof includes:
+
+* `composer validate`
+* `composer dump-autoload`
+* `php bin/console cache:clear`
+* `php bin/console debug:router`
+* `php bin/console debug:container`
+* `php bin/console doctrine:mapping:info`
+* demo seed
+* quote
+* latest rates
+* status
+* health
+
+== Provider implementation
+
+The current HTTP JSON provider is a generic skeleton. Provider-specific implementation is intentionally future work.
+
+Candidate providers:
+
+* ECB
+* NBU
+* OpenExchangeRates
+* internal corporate provider
+
+== OpenAPI depth
+
+The OpenAPI contract exists, but some schema sections are intentionally compact after Wave 26/27.
+
+A future wave should expand full response schemas after host proof stabilizes.
+
+== Persistence
+
+The component owns `exchange_exchange` and `exchange_rate`.
+
+Consumer-specific audit persistence remains outside Exchanging.
+
+== Canon
+
+Known limits do not justify introducing `/src/Domain/` or ports-and-adapters layers.

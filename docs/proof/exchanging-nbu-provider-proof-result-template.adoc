@@ -1,0 +1,83 @@
+= Exchanging NBU Provider Proof Result Template
+
+== Metadata
+
+[cols="1,2"]
+|===
+| Field | Value
+
+| Component
+| Exchanging
+
+| Provider
+| NBU
+
+| Provider code
+| `nbu`
+
+| Pair
+| TODO
+
+| Rate date
+| TODO
+
+| Host root
+| TODO
+
+| Proof date
+| TODO
+
+| Operator
+| TODO
+|===
+
+== Result summary
+
+[cols="1,1,3"]
+|===
+| Step | Status | Notes
+
+| Optional config exists
+| TODO
+| TODO
+
+| Provider class exists
+| TODO
+| TODO
+
+| composer dump-autoload
+| TODO
+| TODO
+
+| php bin/console cache:clear
+| TODO
+| TODO
+
+| debug provider service
+| TODO
+| TODO
+
+| exchanging:rate:fetch
+| TODO
+| TODO
+
+| exchanging:rate:fetch-capture
+| TODO
+| TODO
+
+| exchanging:rate:latest
+| TODO
+| TODO
+|===
+
+== Blockers
+
+* TODO
+
+== Final proof status
+
+Choose one:
+
+* `PASS`
+* `PASS_WITH_WARNINGS`
+* `FAIL`

@@ -1,0 +1,19 @@
+= Exchanging Wave 35 NBU Activation Helper Report
+
+== Added
+
+* `docs/host/examples/exchanging_nbu_import.yaml`
+* `tools/host/exchanging-add-nbu-import-snippet.ps1`
+* `docs/host/exchanging-nbu-provider-host-activation.adoc`
+
+== Purpose
+
+Wave 35 adds a safe host-side activation helper for the optional NBU provider.
+
+== Runtime code changes
+
+None.
+
+== Safety
+
+The helper creates a separate import file and refuses to overwrite an existing file.

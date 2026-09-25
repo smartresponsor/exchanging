@@ -1,0 +1,16 @@
+= Exchanging Wave 29 RC Checkpoint Report
+
+== Added
+
+* `docs/release/exchanging-rc-checkpoint-summary.adoc`
+* `docs/release/exchanging-known-limits.adoc`
+* `docs/release/exchanging-next-milestone-backlog.adoc`
+* `delivery/jira/next-milestone.csv`
+
+== Purpose
+
+Wave 29 records a release-candidate checkpoint and separates current architecture/business completeness from later runtime/provider proof.
+
+== Runtime code changes
+
+None.

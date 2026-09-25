@@ -1,0 +1,37 @@
+= Exchanging Health Check
+
+== Purpose
+
+The health surface validates lightweight component wiring.
+
+It is different from operational status:
+
+* status reports configured surface;
+* health checks whether core services are wired.
+
+== Service
+
+`ExchangeHealthCheckServiceInterface`
+
+== Console
+
+[source,powershell]
+----
+php bin/console exchanging:health
+----
+
+== HTTP
+
+[source,text]
+----
+GET /exchanging/health
+----
+
+== Response status
+
+* `200 OK` when healthy
+* `503 Service Unavailable` when a check fails
+
+== Scope
+
+The health check does not call external providers and does not validate production data correctness.

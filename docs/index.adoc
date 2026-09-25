@@ -1,0 +1,22 @@
+= Exchanging Documentation Index
+
+== Output contracts
+
+* xref:contract/exchanging-output-template-context-contract.adoc[Output template context contract]
+* xref:bridge/exchanging-interfacing-bridge-contract.adoc[Exchanging to Interfacing bridge contract]
+* xref:contract/exchanging-neighbor-hook-contracts.adoc[Neighbor hook contracts]
+
+== Runtime
+
+* xref:runtime/exchanging-dual-mode-runtime.adoc[Dual-mode runtime]
+* xref:runtime/exchanging-symfony8-only-composer.adoc[Symfony 8 only composer direction]
+
+== Canon guardrails
+
+* Symfony constraints use `^8.1` within Symfony 8
+* DoctrineBundle uses `^3.2`
+* DBAL uses `^4.0`
+* no `/src/Domain/`
+* no ports-and-adapters architecture
+* namespace stays `App\Exchanging`
+* table prefix stays `exchange_`

@@ -1,0 +1,32 @@
+= Exchanging Wave 46 Symfony 8 Only Composer Report
+
+== Added
+
+* `tools/runtime/exchanging-upgrade-symfony8-only.ps1`
+* `tools/runtime/exchanging-symfony8-composer-preflight.ps1`
+* `docs/runtime/exchanging-symfony8-only-composer.adoc`
+
+== Modified
+
+* `README.adoc`
+* `docs/index.adoc`
+* `docs/manifest/exchanging-component-manifest.json`
+
+== Purpose
+
+Wave 46 switches the composer/dependency direction to Symfony `^8.0` only.
+
+== Runtime code changes
+
+None.
+
+== Dependency migration
+
+The helper runs Composer commands and does not blindly rewrite `composer.json`.
+
+== Core command
+
+[source,powershell]
+----
+composer require "symfony/var-exporter:^8.0" --with-all-dependencies
+----

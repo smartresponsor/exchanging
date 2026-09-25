@@ -1,0 +1,58 @@
+= Exchanging Output Template Context Contract
+
+== Purpose
+
+This contract gives Bridge/Interfacing a stable outbound context shape for rendering exchange data through template builders.
+
+== Provider
+
+`ExchangeTemplateContextProviderInterface`
+
+== Request DTO
+
+`ExchangeTemplateContextRequestDTO`
+
+Fields:
+
+* `baseCurrencyCode`
+* `quoteCurrencyCode`
+* `amount`
+* `providerCode`
+* `rateDate`
+* `viewType`
+
+== Output DTO
+
+`ExchangeTemplateContextDTO`
+
+Main sections:
+
+* `component`
+* `viewType`
+* `title`
+* `money`
+* `rate`
+* `provider`
+* `freshness`
+* `audit`
+* `links`
+* `metadata`
+
+== Intended Bridge usage
+
+Bridge can convert `ExchangeTemplateContextDTO` into an Interfacing screen/template payload.
+
+Suggested template selector:
+
+[source,text]
+----
+exchange_quote_summary
+----
+
+== Boundary
+
+Exchanging owns exchange context.
+
+Interfacing owns UI composition.
+
+Bridge owns mapping between component context and Interfacing templates.

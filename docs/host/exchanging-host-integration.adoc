@@ -1,0 +1,98 @@
+= Exchanging Host Integration
+
+== Purpose
+
+This document describes how a Symfony host application can wire the Exchanging component.
+
+== Package identity
+
+[source,json]
+----
+"name": "exchanging/exchange"
+----
+
+== Namespace
+
+[source,php]
+----
+App\Exchanging\
+----
+
+== Option A: bundle registration
+
+When the package is installed as a Composer dependency and Symfony Flex auto-discovery is available, the bundle metadata can register:
+
+[source,php]
+----
+App\Exchanging\ExchangingBundle::class => ['all' => true],
+----
+
+The bundle loads:
+
+* `config/services/exchange_services.yaml`
+* `config/packages/exchange_provider.yaml`
+
+== Option B: explicit host imports
+
+Services and parameters:
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/services/exchange_services.yaml' }
+  - { resource: '../Exchanging/config/packages/exchange_provider.yaml' }
+----
+
+Doctrine mapping:
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/packages/exchange_doctrine.yaml' }
+----
+
+Routes:
+
+[source,yaml]
+----
+exchanging:
+  resource: '../Exchanging/config/routes/exchange_routes.yaml'
+----
+
+== Host-app path note
+
+The provided path examples assume sibling repositories:
+
+[source,text]
+----
+D:\PhpstormProjects\www\HostApp
+D:\PhpstormProjects\www\Exchanging
+----
+
+If your host layout differs, adjust only the path prefix.
+
+== Smoke checklist
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\HostApp
+php bin/console cache:clear
+php bin/console debug:container App\Exchanging\ServiceInterface\ExchangeQuoteServiceInterface
+php bin/console debug:router | findstr exchanging
+php bin/console doctrine:mapping:info | findstr Exchanging
+----
+
+== Command proof
+
+[source,powershell]
+----
+php bin/console exchanging:rate:capture USD UAH 41.2500000000 manual --rate-date=2026-05-03
+php bin/console exchanging:quote USD UAH 100 --rate-date=2026-05-03
+----
+
+== Canon
+
+* No `/src/Domain/`
+* Namespace remains `App\Exchanging`
+* Table prefix remains `exchange_`
+* Routes and Doctrine mapping are explicit because host paths are layout-sensitive.

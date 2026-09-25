@@ -1,0 +1,37 @@
+= Exchanging Demo Rates
+
+== Purpose
+
+Demo rates provide deterministic local smoke data without relying on a remote provider.
+
+== Command
+
+[source,powershell]
+----
+php bin/console exchanging:demo:seed-rates
+----
+
+== Seeded pairs
+
+* `USD/UAH`
+* `EUR/USD`
+* `USD/EUR`
+* `GBP/USD`
+
+Provider code:
+
+[source,text]
+----
+demo
+----
+
+== Follow-up smoke command
+
+[source,powershell]
+----
+php bin/console exchanging:quote USD UAH 100
+----
+
+== Canon
+
+Demo rates are for local proof and development only. They are not a production rate provider.

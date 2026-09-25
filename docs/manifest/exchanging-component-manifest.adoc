@@ -1,0 +1,22 @@
+= Exchanging Component Manifest
+
+== Machine-readable manifest
+
+[source,text]
+----
+docs/manifest/exchanging-component-manifest.json
+----
+
+== Purpose
+
+The manifest exposes the stable integration surface for host-app wiring, review, and import tooling.
+
+== Covered areas
+
+* package and namespace
+* HTTP routes
+* OpenAPI location
+* console commands
+* Doctrine tables and migration
+* service interfaces
+* canon constraints

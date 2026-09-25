@@ -1,0 +1,40 @@
+= Exchanging to Interfacing Bridge Contract
+
+== Purpose
+
+Bridge can connect Exchanging to Interfacing by consuming `ExchangeTemplateContextProviderInterface`.
+
+== Flow
+
+[source,text]
+----
+ExchangeTemplateContextRequestDTO
+  -> ExchangeTemplateContextProviderInterface
+  -> ExchangeTemplateContextDTO
+  -> Bridge mapper
+  -> Interfacing templates/screen payload
+----
+
+== Stable sections for template mapping
+
+* `money`
+* `rate`
+* `provider`
+* `freshness`
+* `audit`
+* `links`
+* `metadata`
+
+== Suggested Interfacing template selectors
+
+* `exchange_quote_summary`
+* `exchange_rate_latest_list`
+* `exchange_provider_status`
+* `exchange_applied_rate_audit`
+
+== Bridge responsibility
+
+Bridge should not calculate rates.
+
+Bridge should map Exchanging context into Interfacing presentation contracts.
+

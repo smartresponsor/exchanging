@@ -1,0 +1,31 @@
+= Exchanging Wave 44 VarExporter Runtime Dependency Report
+
+== Added
+
+* `tools/runtime/exchanging-require-var-exporter.ps1`
+* `docs/runtime/exchanging-var-exporter-runtime-dependency.adoc`
+
+== Purpose
+
+Wave 44 provides the correct remediation for LazyGhost runtime failure when config preflight confirms no YAML explicitly enables LazyGhost.
+
+== Command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-require-var-exporter.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Runtime code changes
+
+None.
+
+== Dependency change
+
+The helper runs:
+
+[source,powershell]
+----
+composer require "symfony/var-exporter:^7.0"
+----

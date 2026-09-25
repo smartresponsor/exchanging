@@ -1,0 +1,33 @@
+= Exchanging NBU Provider Remediation Checklist
+
+== Checklist
+
+When NBU provider proof fails, verify in this order:
+
+. `src/Service/Exchange/ExchangeNbuRemoteRateProvider.php` exists.
+. `config/packages/exchange_nbu_provider.yaml` exists.
+. Host has an import file for the NBU provider.
+. Host import path points to the active `D:\PhpstormProjects\www\Exchanging` repository.
+. `composer dump-autoload` succeeds.
+. `php bin/console cache:clear -vvv` succeeds.
+. Provider service is visible:
++
+[source,powershell]
+----
+php bin/console debug:container App\Exchanging\Provider\ExchangeNbuRemoteRateProvider
+----
+. Fetch command works for `USD/UAH`.
+. Fetch-capture command works only after Doctrine/schema are ready.
+. Latest rates show `provider=nbu` only after capture.
+
+== Do not do
+
+* Do not delete the repository.
+* Do not overwrite full host config.
+* Do not move provider code into `/src/Domain/`.
+* Do not add ports/adapters abstractions.
+* Do not make Exchanging own Currencing metadata.
+
+== Escalation
+
+If fetch works but fetch-capture fails, treat it as persistence/Doctrine readiness, not provider readiness.

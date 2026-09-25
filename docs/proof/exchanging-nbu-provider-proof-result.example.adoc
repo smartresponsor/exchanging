@@ -1,0 +1,75 @@
+= Exchanging NBU Provider Proof Result Example
+
+== Metadata
+
+[cols="1,2"]
+|===
+| Field | Value
+
+| Component
+| Exchanging
+
+| Provider
+| NBU
+
+| Provider code
+| `nbu`
+
+| Pair
+| `USD/UAH`
+
+| Rate date
+| `2026-05-03`
+
+| Host root
+| `D:\PhpstormProjects\www\Exchanging`
+
+| Proof date
+| `2026-05-03`
+
+| Operator
+| local
+|===
+
+== Result summary
+
+[cols="1,1,3"]
+|===
+| Step | Status | Notes
+
+| Optional config exists
+| PASS
+| `config/packages/exchange_nbu_provider.yaml` exists.
+
+| Provider class exists
+| PASS
+| `ExchangeNbuRemoteRateProvider` exists.
+
+| composer dump-autoload
+| PASS
+| Autoload regenerated.
+
+| php bin/console cache:clear
+| PASS
+| Container compiled.
+
+| debug provider service
+| PASS
+| Provider service is visible.
+
+| exchanging:rate:fetch
+| PASS
+| NBU rate fetched.
+
+| exchanging:rate:fetch-capture
+| SKIPPED
+| Fetch-only proof.
+
+| exchanging:rate:latest
+| SKIPPED
+| Fetch-only proof.
+|===
+
+== Final proof status
+
+`PASS`

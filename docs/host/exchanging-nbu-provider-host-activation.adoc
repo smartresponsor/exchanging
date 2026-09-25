@@ -1,0 +1,59 @@
+= Exchanging NBU Provider Host Activation
+
+== Purpose
+
+This document gives a safe host-side activation pattern for the optional NBU provider.
+
+== Manual import file
+
+Create this in the host app:
+
+[source,text]
+----
+config/packages/exchange_nbu_import.yaml
+----
+
+Content:
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/packages/exchange_nbu_provider.yaml' }
+----
+
+== Helper script
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/host/exchanging-add-nbu-import-snippet.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+For a different sibling path:
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/host/exchanging-add-nbu-import-snippet.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\HostApp" `
+  -ExchangingRelativePath "../Exchanging"
+----
+
+== Safety
+
+The helper:
+
+* creates only one import file;
+* does not edit existing YAML files;
+* refuses to overwrite an existing target file;
+* does not delete anything.
+
+== After activation
+
+Run:
+
+[source,powershell]
+----
+php bin/console cache:clear
+php bin/console debug:container App\Exchanging\Provider\ExchangeNbuRemoteRateProvider
+php bin/console exchanging:rate:fetch USD UAH nbu --rate-date=2026-05-03
+----

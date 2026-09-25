@@ -1,0 +1,36 @@
+= Product Capability Audit: Exchanging
+:revdate: 2026-09-20
+
+== Boundary verdict
+
+Exchanging owns exchange rates, quotes, provider fetch/capture, freshness policy and applied-rate audit evidence. Currency identity/metadata belongs to Currencing.
+
+== Capability matrix
+
+[cols="3,1,4",options="header"]
+|===
+|Capability |Status |Audit
+|Exchange-rate identity |PARITY |Core domain exists.
+|Provider abstraction |PARITY |Explicit provider fetch/capture ownership.
+|Rate freshness/TTL |PARITY |Explicit freshness policy.
+|Quote creation |PARITY |Owned.
+|Historical captured rate |PARITY |Applied-rate audit payload is a strong capability.
+|Provider failover |PARTIAL |Should have deterministic priority/fallback.
+|Manual/admin rate |PARTIAL |Useful for contractual/fixed rates.
+|Spread/markup policy |PARTIAL |If commercial FX is in scope, keep explicit and separate from raw provider rate.
+|Triangulation |PARTIAL |Needed where direct pairs are unavailable.
+|Rate explanation/provenance |AHEAD |Current audit payload direction is strong.
+|===
+
+== Boundary risks
+
+* Do not duplicate currency precision/symbol/formatting from Currencing.
+* Ordering/Paying persist the applied quote/rate reference, not recalculate it.
+
+== Milestone direction
+
+M1: provider failover and manual rate semantics.
+M2: triangulation and quote expiry.
+M3: applied-rate provenance across Pricing/Ordering/Paying.
+M4: operational provider benchmark.
+

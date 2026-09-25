@@ -1,0 +1,14 @@
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../Exchanging",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "require": {
+    "exchanging/exchange": "*"
+  }
+}

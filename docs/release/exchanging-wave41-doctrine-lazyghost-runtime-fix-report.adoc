@@ -1,0 +1,35 @@
+= Exchanging Wave 41 Doctrine LazyGhost Runtime Fix Report
+
+== Modified
+
+* `config/packages/exchange_doctrine_runtime.yaml`
+
+== Added
+
+* `docs/runtime/exchanging-doctrine-runtime-config.adoc`
+
+== Purpose
+
+Wave 41 removes the standalone runtime dependency on Doctrine LazyGhost support.
+
+== Fixed error
+
+[source,text]
+----
+Symfony LazyGhost is not available. Please install the "symfony/var-exporter" package version 6.4 or 7 to use this feature or enable PHP 8.4 native lazy objects.
+----
+
+== Runtime code changes
+
+Runtime configuration changed only.
+
+== Expected check
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----

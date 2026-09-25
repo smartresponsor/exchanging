@@ -1,0 +1,3 @@
+imports:
+  - { resource: 'exchange_provider.yaml' }
+  - { resource: 'exchange_nbu_provider.yaml' }

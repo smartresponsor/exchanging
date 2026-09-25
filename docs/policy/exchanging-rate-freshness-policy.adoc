@@ -1,0 +1,44 @@
+= Exchanging Rate Freshness Policy
+
+== Purpose
+
+The freshness policy evaluates whether a captured exchange rate snapshot is still acceptable for quote workflows.
+
+== Defaults
+
+[source,yaml]
+----
+parameters:
+  exchanging.rate_freshness_max_age_seconds: 86400
+  exchanging.enforce_rate_freshness_on_quote: false
+----
+
+`exchanging.enforce_rate_freshness_on_quote` is disabled by default so existing quote flows are not broken by policy introduction.
+
+== Service
+
+`ExchangeRateFreshnessServiceInterface`
+
+== Behavior
+
+The service compares `capturedAtImmutable` against the current reference time.
+
+It can be used in two modes:
+
+* `inspect()` returns a result DTO.
+* `assertFresh()` throws `ExchangeStaleRateException` when the rate is stale.
+
+== Quote enforcement
+
+When `exchanging.enforce_rate_freshness_on_quote` is `true`, `ExchangeQuoteService` calls `assertFresh()` before returning a quote.
+
+HTTP behavior:
+
+* stale rate => `409 Conflict`
+* invalid payload => `400 Bad Request`
+* missing rate => `404 Not Found`
+
+== Canon
+
+Freshness is a business policy service under `src/Service/Exchange`.
+No `/src/Domain/` layer is introduced.

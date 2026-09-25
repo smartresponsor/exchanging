@@ -1,0 +1,66 @@
+= Exchanging Symfony 8 Only Composer Direction
+
+== Decision
+
+Exchanging runtime dependency direction is Symfony `^8.1` only.
+
+No Symfony `^7.x` fallback should be kept in runtime requirements.
+
+== Important Doctrine alignment
+
+Symfony 8 requires compatible DoctrineBundle alignment.
+
+`doctrine/doctrine-bundle` `2.18.2` is not enough because it allows Symfony `^6.4 || ^7.0` but not Symfony `^8.1`.
+
+Use DoctrineBundle `^3.2` with DBAL `^4.0`.
+
+== Migration helper
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-upgrade-symfony8-only.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Manual command
+
+[source,powershell]
+----
+composer require `
+  'doctrine/doctrine-bundle:^3.2' `
+  'doctrine/dbal:^4.0' `
+  'doctrine/persistence:^4.0' `
+  --with-all-dependencies
+
+composer require `
+  'symfony/framework-bundle:^8.1' `
+  'symfony/console:^8.1' `
+  'symfony/runtime:^8.1' `
+  'symfony/dotenv:^8.1' `
+  'symfony/yaml:^8.1' `
+  'symfony/http-client:^8.1' `
+  'symfony/var-exporter:^8.1' `
+  --with-all-dependencies
+----
+
+== PowerShell note
+
+Use single quotes around Composer package constraints so the caret is passed literally:
+
+[source,powershell]
+----
+'symfony/framework-bundle:^8.1'
+----
+
+== Verification
+
+[source,powershell]
+----
+Remove-Item -Recurse -Force var\cache -ErrorAction SilentlyContinue
+composer dump-autoload
+composer validate
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----

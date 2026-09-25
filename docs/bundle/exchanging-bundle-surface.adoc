@@ -1,0 +1,62 @@
+= Exchanging Bundle Surface
+
+== Purpose
+
+The component can be used in two modes:
+
+* manual host imports
+* Symfony bundle-compatible registration
+
+== Bundle class
+
+[source,php]
+----
+App\Exchanging\ExchangingBundle
+----
+
+== Extension class
+
+[source,php]
+----
+App\Exchanging\DependencyInjection\ExchangingExtension
+----
+
+== Loaded configuration
+
+The extension loads:
+
+* `config/services/exchange_services.yaml`
+* `config/packages/exchange_provider.yaml`
+
+Doctrine mapping and routes remain explicit host-app imports because their path may depend on the consumer repository layout.
+
+== Manual imports still supported
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/services/exchange_services.yaml' }
+  - { resource: '../Exchanging/config/packages/exchange_provider.yaml' }
+----
+
+== Explicit imports still required
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/packages/exchange_doctrine.yaml' }
+
+exchanging:
+  resource: '../Exchanging/config/routes/exchange_routes.yaml'
+----
+
+== Canon
+
+The bundle surface keeps the same namespace:
+
+[source,php]
+----
+App\Exchanging
+----
+
+No `/src/Domain/` layer is introduced.

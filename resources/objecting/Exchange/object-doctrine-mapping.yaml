@@ -1,0 +1,30 @@
+object_doctrine_mapping_contract_version: 1
+component: Exchanging
+business_stem: Exchange
+namespace: App\Exchanging
+entity:
+  class: App\Exchanging\Entity\ExchangeEntity
+  table: exchange_exchange
+  backend_owns_migrations: true
+objecting:
+  package: objecting/object
+  column_prefix_false: true
+  object_columns_prefixed: false
+required_field_packs:
+  - object_audit
+embeddables:
+  - App\Objecting\Embeddable\ObjectAuditEmbeddable
+traits:
+  - App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait
+columns:
+  - created_at
+  - modified_at
+  - created_by
+  - modified_by
+quality_gates:
+  - composer test
+  - composer phpstan
+  - php bin/console doctrine:schema:validate --skip-sync
+notes:
+  - Exchanging owns the entity and schema lifecycle; Objecting owns the reusable audit field-pack implementation.
+  - ExchangeRate.capturedAtImmutable is a domain capture timestamp and remains outside Objecting audit state.

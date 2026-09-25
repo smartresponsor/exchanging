@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: Exchanging API
+  version: 0.27.0
+  description: HTTP/API contract for the Exchanging component.
+servers:
+  - url: /
+paths:
+  /exchanging/quote:
+    post:
+      operationId: createExchangeQuote
+      summary: Calculate an exchange quote.
+      tags: [Exchanging]
+      responses:
+        '200':
+          description: Exchange quote calculated.
+        '400':
+          description: Invalid request payload.
+        '404':
+          description: Exchange rate not found.
+        '409':
+          description: Exchange rate is stale.
+  /exchanging/rates/capture:
+    post:
+      operationId: captureExchangeRate
+      summary: Capture an exchange rate snapshot.
+      tags: [Exchanging]
+      responses:
+        '201':
+          description: Exchange rate snapshot captured.
+        '400':
+          description: Invalid request payload.
+  /exchanging/rates/latest:
+    get:
+      operationId: listLatestExchangeRates
+      summary: List latest exchange rate snapshots.
+      tags: [Exchanging]
+      responses:
+        '200':
+          description: Latest exchange rates returned.
+        '400':
+          description: Invalid request query.
+  /exchanging/status:
+    get:
+      operationId: getExchangingStatus
+      summary: Show Exchanging operational status.
+      tags: [Exchanging]
+      responses:
+        '200':
+          description: Operational status returned.
+  /exchanging/health:
+    get:
+      operationId: getExchangingHealth
+      summary: Run lightweight Exchanging health checks.
+      tags: [Exchanging]
+      responses:
+        '200':
+          description: Health check passed.
+        '503':
+          description: Health check failed.
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string

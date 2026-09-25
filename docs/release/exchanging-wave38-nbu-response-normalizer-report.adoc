@@ -1,0 +1,23 @@
+= Exchanging Wave 38 NBU Response Normalizer Report
+
+== Added
+
+* `src/DTO/ExchangeNbuRateNormalizedResponseDTO.php`
+* `src/Service/Exchange/ExchangeNbuRateResponseNormalizer.php`
+* `docs/provider/exchanging-nbu-response-normalizer.adoc`
+
+== Modified
+
+* `src/Service/Exchange/ExchangeNbuRemoteRateProvider.php`
+
+== Purpose
+
+Wave 38 extracts NBU response parsing from the provider into a dedicated Symfony service.
+
+== Runtime code changes
+
+Yes. Optional NBU provider internals were refactored.
+
+== Activation
+
+The provider remains optional and is active only when the NBU provider config is imported by the host.

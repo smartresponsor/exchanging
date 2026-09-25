@@ -1,0 +1,27 @@
+= Exchanging Wave 31 Proof Result Template Report
+
+== Added
+
+* `docs/proof/exchanging-host-runtime-proof-result-template.adoc`
+* `docs/proof/exchanging-host-runtime-proof-result.example.adoc`
+* `tools/proof/exchanging-proof-result-bootstrap.ps1`
+
+== Purpose
+
+Wave 31 adds a structured place to record the output of local host runtime proof.
+
+== Runtime code changes
+
+None.
+
+== Bootstrap command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-proof-result-bootstrap.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Notes
+
+The bootstrap script creates a local result file only if it does not already exist.

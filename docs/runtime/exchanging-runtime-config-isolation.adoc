@@ -1,0 +1,57 @@
+= Exchanging Runtime Config Isolation
+
+== Problem
+
+The standalone runtime previously loaded:
+
+[source,php]
+----
+config/packages/*.yaml
+----
+
+That allowed host/bundle-oriented package files to leak into the standalone runtime container.
+
+Example failure:
+
+[source,text]
+----
+Symfony LazyGhost is not available.
+----
+
+== Resolution
+
+`Kernel` now loads only runtime-safe package files:
+
+* `config/packages/framework.yaml`
+* `config/packages/exchange_doctrine_runtime.yaml`
+* `config/packages/exchange_runtime_provider.yaml`
+
+It no longer glob-loads all root package YAML files.
+
+== Why
+
+Reusable bundle configuration and host import snippets can have different assumptions than the direct standalone runtime.
+
+The standalone runtime should be deterministic and minimal.
+
+== Runtime service import
+
+Runtime services are loaded through:
+
+[source,text]
+----
+config/services/exchange_runtime_services.yaml
+----
+
+== Runtime routes
+
+Runtime routes are loaded through:
+
+[source,text]
+----
+config/routes/exchange_runtime_routes.yaml
+----
+
+== Canon
+
+This keeps dual-mode runtime isolated without introducing a sandbox.

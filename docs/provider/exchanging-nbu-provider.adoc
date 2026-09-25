@@ -1,0 +1,71 @@
+= Exchanging NBU Provider
+
+== Purpose
+
+`ExchangeNbuRemoteRateProvider` is an optional provider-specific implementation for official NBU exchange rates to UAH.
+
+== Provider code
+
+[source,text]
+----
+nbu
+----
+
+== Supported direct pair shape
+
+[source,text]
+----
+FOREIGN/UAH
+----
+
+Examples:
+
+* `USD/UAH`
+* `EUR/UAH`
+* `GBP/UAH`
+
+== Endpoint
+
+The default endpoint is configurable:
+
+[source,yaml]
+----
+parameters:
+  exchanging.nbu_endpoint_url: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange'
+----
+
+== Host import
+
+Add this only when the NBU provider should be enabled:
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/packages/exchange_nbu_provider.yaml' }
+----
+
+== Commands
+
+Fetch only:
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch USD UAH nbu --rate-date=2026-05-03
+----
+
+Fetch and capture:
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch-capture USD UAH nbu --rate-date=2026-05-03
+----
+
+== Boundary
+
+This provider does not implement cross-rate conversion such as `EUR/USD`.
+
+For non-UAH pairs, use another provider or a future cross-rate service.
+
+== Source notes
+
+The provider uses the public NBU API shape where `valcode`, `date`, and `json` are accepted query parameters and JSON rows contain fields such as `rate`, `cc`, and `exchangedate`.

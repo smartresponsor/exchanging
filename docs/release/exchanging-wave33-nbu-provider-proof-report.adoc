@@ -1,0 +1,30 @@
+= Exchanging Wave 33 NBU Provider Proof Report
+
+== Added
+
+* `tools/proof/exchanging-nbu-provider-proof.ps1`
+* `docs/proof/exchanging-nbu-provider-proof.adoc`
+* `docs/proof/exchanging-nbu-provider-proof-result-template.adoc`
+
+== Purpose
+
+Wave 33 adds repeatable proof tooling for the optional NBU provider.
+
+== Runtime code changes
+
+None.
+
+== Proof command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-nbu-provider-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging" `
+  -BaseCurrency USD `
+  -QuoteCurrency UAH `
+  -RateDate 2026-05-03
+----
+
+== Notes
+
+This wave adds proof tooling only. It does not claim the proof has been executed locally.

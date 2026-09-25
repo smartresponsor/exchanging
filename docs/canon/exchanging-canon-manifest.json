@@ -1,0 +1,33 @@
+{
+  "component": "Exchanging",
+  "rules": [
+    {
+      "id": "namespace",
+      "rule": "All component classes must use App\\Exchanging namespace."
+    },
+    {
+      "id": "package",
+      "rule": "Composer package identity is exchanging/exchange."
+    },
+    {
+      "id": "no_domain",
+      "rule": "Do not introduce /src/Domain/."
+    },
+    {
+      "id": "no_ports_adapters",
+      "rule": "Do not introduce ports-and-adapters architecture."
+    },
+    {
+      "id": "table_prefix",
+      "rule": "Doctrine-owned tables must use exchange_ prefix."
+    },
+    {
+      "id": "interfaces_mirror",
+      "rule": "Service interfaces live in mirrored ServiceInterface folders."
+    },
+    {
+      "id": "symfony_layers",
+      "rule": "Use Symfony-identifiable layers such as Entity, Repository, Service, Controller, Command, Dto, ValueObject."
+    }
+  ]
+}

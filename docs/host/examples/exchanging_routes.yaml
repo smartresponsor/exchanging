@@ -1,0 +1,2 @@
+exchanging:
+  resource: '../Exchanging/config/routes/exchange_routes.yaml'

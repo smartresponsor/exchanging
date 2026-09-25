@@ -1,0 +1,20 @@
+= Exchanging Paying Hook
+
+== Use case
+
+Paying asks Exchanging for conversion data while preserving payment-provider responsibility inside Paying.
+
+== Recommended service interfaces
+
+* `ExchangeQuoteServiceInterface`
+* `ExchangeAppliedRateAuditServiceInterface`
+
+== Flow
+
+. Paying requests a quote for settlement/reporting normalization.
+. Paying decides whether the quote is acceptable for the payment operation.
+. Paying stores applied-rate audit details in payment-side records.
+
+== Boundary
+
+Exchanging must not own payment authorization, payment capture, refund, or provider lifecycle.

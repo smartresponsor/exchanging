@@ -1,0 +1,28 @@
+= Exchanging Wave 28 RC Gate Refresh Report
+
+== Modified
+
+* `tools/gate/exchanging-rc-gate.ps1`
+* `tools/gate/exchanging-rc-gate-manifest.json`
+* `docs/gate/exchanging-rc-gate.adoc`
+* `README.adoc`
+* `docs/manifest/exchanging-component-manifest.json`
+
+== Purpose
+
+Wave 28 refreshes the RC gate so it covers the current Exchanging surface.
+
+== Added gate checks
+
+* status endpoint
+* health endpoint
+* latest-rates endpoint
+* status command
+* health command
+* latest-rates command
+* status/health/read documentation
+* service aliases for status, health, and read surfaces
+
+== Runtime code changes
+
+None.

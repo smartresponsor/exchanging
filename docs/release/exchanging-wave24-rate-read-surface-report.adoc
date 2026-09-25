@@ -1,0 +1,23 @@
+= Exchanging Wave 24 Rate Read Surface Report
+
+== Added
+
+* `src/DTO/ExchangeRateReadRequestDTO.php`
+* `src/DTO/ExchangeRateReadItemDTO.php`
+* `src/DTO/ExchangeRateReadResultDTO.php`
+* `src/ServiceInterface/Exchange/ExchangeRateReadServiceInterface.php`
+* `src/Service/Exchange/ExchangeRateReadService.php`
+* `src/Command/Exchange/ExchangeRateLatestCommand.php`
+* `docs/read/exchanging-rate-read-surface.adoc`
+
+== Modified
+
+* `src/Repository/Exchange/ExchangeRateRepository.php`
+* `config/services/exchanging.yaml`
+* `README.adoc`
+* `docs/index.adoc`
+* `docs/manifest/exchanging-component-manifest.json`
+
+== Purpose
+
+Wave 24 adds observable read/query surface for captured exchange rate snapshots.

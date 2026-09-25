@@ -1,0 +1,42 @@
+= Exchanging Architecture Manifest
+
+== Machine-readable file
+
+[source,text]
+----
+docs/architecture/exchanging-architecture-manifest.json
+----
+
+== Architecture style
+
+Symfony-oriented component.
+
+== Canonical layers
+
+* `src/Command`
+* `src/Controller`
+* `src/DependencyInjection`
+* `src/Dto`
+* `src/Entity`
+* `src/Exception`
+* `src/Repository`
+* `src/Service`
+* `src/ServiceInterface`
+* `src/ValueObject`
+
+== Forbidden
+
+* `/src/Domain/`
+* ports-and-adapters architecture
+
+== Bundle surface
+
+* `App\Exchanging\ExchangingBundle`
+* `App\Exchanging\DependencyInjection\ExchangingExtension`
+
+== Persistence surface
+
+* table prefix: `exchange_`
+* tables:
+** `exchange_exchange`
+** `exchange_rate`

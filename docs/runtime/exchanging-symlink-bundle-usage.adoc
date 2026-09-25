@@ -1,0 +1,55 @@
+= Exchanging Symlink Bundle Usage
+
+== Purpose
+
+This document captures the desired local development model:
+
+[source,text]
+----
+D:\PhpstormProjects\www\Exchanging   reusable bundle/runtime-capable component
+D:\PhpstormProjects\www\Currencing   host app consuming Exchanging through path repository
+----
+
+== Host composer path repository
+
+[source,json]
+----
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../Exchanging",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "require": {
+    "exchanging/exchange": "*"
+  }
+}
+----
+
+== Host install/update
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Currencing
+composer update exchanging/exchange
+composer dump-autoload
+php bin/console cache:clear
+php bin/console list exchanging
+----
+
+== Runtime in Exchanging itself
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+composer install
+php bin/console list exchanging
+----
+
+== Canon
+
+The same repository can be executed directly and consumed by another host through symlink/path repository.

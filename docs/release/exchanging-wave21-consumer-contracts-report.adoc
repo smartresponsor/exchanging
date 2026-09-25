@@ -1,0 +1,24 @@
+= Exchanging Wave 21 Consumer Contracts Report
+
+== Added
+
+* `docs/integration/exchanging-consumer-boundaries.adoc`
+* `docs/integration/exchanging-ordering-hook.adoc`
+* `docs/integration/exchanging-paying-hook.adoc`
+* `docs/integration/exchanging-taxating-hook.adoc`
+* `docs/integration/exchanging-currencing-hook.adoc`
+* `docs/integration/exchanging-consumer-contract-map.json`
+
+== Purpose
+
+Wave 21 documents the integration boundaries between Exchanging and adjacent components.
+
+== Runtime code changes
+
+None.
+
+== Boundary statement
+
+Exchanging provides exchange rates, quotes, freshness policy, provider fetch/capture, and audit payload construction.
+
+It does not own pricing, orders, payments, taxes, or currency metadata.

@@ -1,0 +1,62 @@
+= Exchanging Console Commands
+
+== Capture rate
+
+[source,powershell]
+----
+php bin/console exchanging:rate:capture USD UAH 41.2500000000 manual --rate-date=2026-05-03
+----
+
+== Quote
+
+[source,powershell]
+----
+php bin/console exchanging:quote USD UAH 100 --rate-date=2026-05-03
+----
+
+== Fetch remote rate
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch USD UAH provider-code --rate-date=2026-05-03
+----
+
+== Fetch and capture remote rate
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch-capture USD UAH provider-code --rate-date=2026-05-03
+----
+
+== Seed demo rates
+
+[source,powershell]
+----
+php bin/console exchanging:demo:seed-rates
+----
+
+== List latest rates
+
+[source,powershell]
+----
+php bin/console exchanging:rate:latest
+php bin/console exchanging:rate:latest --base=USD --quote=UAH --provider=demo --limit=10
+----
+
+== Operational status
+
+[source,powershell]
+----
+php bin/console exchanging:status
+----
+
+== Health
+
+[source,powershell]
+----
+php bin/console exchanging:health
+----
+
+== Notes
+
+The commands are intended for local smoke/proof flows and host-app validation.

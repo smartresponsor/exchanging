@@ -1,0 +1,26 @@
+= Exchanging Wave 18 RC Gate Report
+
+== Added
+
+* `tools/gate/exchanging-rc-gate.ps1`
+* `tools/gate/exchanging-rc-gate-manifest.json`
+* `docs/gate/exchanging-rc-gate.adoc`
+
+== Gate scope
+
+The gate validates the architectural and delivery surface only. It does not claim runtime proof, PHPUnit proof, PHPStan proof, or provider production certification.
+
+== Expected usage
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+powershell -ExecutionPolicy Bypass -File tools/gate/exchanging-rc-gate.ps1 -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Expected result
+
+[source,text]
+----
+Exchanging RC gate passed.
+----

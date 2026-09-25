@@ -1,0 +1,8 @@
+imports:
+  # Services and provider/policy parameters can be loaded by the bundle.
+  # Keep these explicit imports when using sibling-repository integration without bundle registration.
+  - { resource: '../Exchanging/config/services/exchange_services.yaml' }
+  - { resource: '../Exchanging/config/packages/exchange_provider.yaml' }
+
+  # Doctrine mapping remains explicit because the path is host-layout-sensitive.
+  - { resource: '../Exchanging/config/packages/exchange_doctrine.yaml' }

@@ -1,0 +1,21 @@
+= Exchanging Wave 37 NBU Provider Hardening Report
+
+== Modified
+
+* `src/Service/Exchange/ExchangeNbuRemoteRateProvider.php`
+
+== Added
+
+* `docs/provider/exchanging-nbu-provider-hardening.adoc`
+
+== Purpose
+
+Wave 37 improves optional NBU provider runtime robustness without changing the integration architecture.
+
+== Runtime code changes
+
+Yes. One optional provider class was hardened.
+
+== Activation
+
+The provider remains optional and is active only when `config/packages/exchanging_nbu_provider.yaml` is imported by the host.

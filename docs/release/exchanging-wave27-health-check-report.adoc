@@ -1,0 +1,29 @@
+= Exchanging Wave 27 Health Check Report
+
+== Added
+
+* `src/DTO/ExchangeHealthCheckItemDTO.php`
+* `src/DTO/ExchangeHealthCheckResultDTO.php`
+* `src/ServiceInterface/Exchange/ExchangeHealthCheckServiceInterface.php`
+* `src/Service/Exchange/ExchangeHealthCheckService.php`
+* `src/Controller/Exchange/ExchangeHealthCheckController.php`
+* `src/Command/Exchange/ExchangeHealthCheckCommand.php`
+* `docs/health/exchanging-health-check.adoc`
+
+== Purpose
+
+Wave 27 adds a lightweight health surface for host-app diagnostics.
+
+== Endpoint
+
+[source,text]
+----
+GET /exchanging/health
+----
+
+== Command
+
+[source,powershell]
+----
+php bin/console exchanging:health
+----

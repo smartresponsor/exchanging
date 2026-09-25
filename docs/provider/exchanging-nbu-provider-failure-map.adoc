@@ -1,0 +1,124 @@
+= Exchanging NBU Provider Failure Map
+
+== Purpose
+
+This document maps common optional NBU provider activation/fetch failures to safe remediation steps.
+
+== Failure: provider service not found
+
+Symptom:
+
+[source,text]
+----
+ServiceNotFoundException: App\Exchanging\Provider\ExchangeNbuRemoteRateProvider
+----
+
+Likely causes:
+
+* `config/packages/exchange_nbu_provider.yaml` was not imported by the host.
+* Host import path points to the wrong Exchanging repository path.
+* Composer autoload was not regenerated after applying provider files.
+
+Safe checks:
+
+[source,powershell]
+----
+php bin/console debug:container App\Exchanging\Provider\ExchangeNbuRemoteRateProvider
+composer dump-autoload
+php bin/console cache:clear
+----
+
+== Failure: optional import file already exists
+
+Symptom:
+
+[source,text]
+----
+Target import file already exists
+----
+
+Meaning:
+
+The helper refused to overwrite an existing host import file.
+
+Safe remediation:
+
+* inspect the existing file manually;
+* confirm it imports `../Exchanging/config/packages/exchange_nbu_provider.yaml`;
+* do not delete the file automatically.
+
+== Failure: non-UAH quote currency
+
+Symptom:
+
+[source,text]
+----
+NBU provider supports direct foreign-currency to UAH rates only.
+----
+
+Meaning:
+
+The NBU provider is intentionally direct for `FOREIGN/UAH`.
+
+Safe remediation:
+
+* use `USD/UAH`, `EUR/UAH`, `GBP/UAH`, etc.;
+* use a different provider for non-UAH pairs;
+* add a future cross-rate service explicitly if needed.
+
+== Failure: NBU response does not contain a rate row
+
+Symptom:
+
+[source,text]
+----
+NBU response does not contain a rate row.
+----
+
+Likely causes:
+
+* unsupported currency code;
+* date with no available NBU rate;
+* temporary upstream/API issue;
+* network issue.
+
+Safe remediation:
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch USD UAH nbu --rate-date=2026-05-03
+php bin/console exchanging:rate:fetch EUR UAH nbu --rate-date=2026-05-03
+----
+
+Try a different known currency/date before changing code.
+
+== Failure: cache clear fails after activation
+
+Likely causes:
+
+* YAML indentation error;
+* wrong import path;
+* missing Symfony HttpClient dependency;
+* provider class parse error.
+
+Safe remediation:
+
+[source,powershell]
+----
+php bin/console lint:yaml config/packages/exchange_nbu_import.yaml
+php bin/console lint:yaml config/packages/exchange_nbu_provider.yaml
+composer validate
+composer dump-autoload
+php bin/console cache:clear -vvv
+----
+
+== Canon
+
+Do not introduce `/src/Domain/` or ports/adapters to fix provider wiring issues.
+
+Keep provider classes under:
+
+[source,text]
+----
+src/Service/Exchange
+----

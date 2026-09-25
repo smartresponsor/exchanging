@@ -1,0 +1,21 @@
+= Exchanging Next Milestone Backlog
+
+== Milestone
+
+M2: Provider-specific implementation and host runtime proof.
+
+== Candidate work
+
+. Implement provider-specific remote source.
+. Run host-app runtime proof.
+. Expand OpenAPI response schemas.
+. Review integration with Currencing for currency code validation.
+. Review integration with Ordering, Paying, and Taxating for applied-rate audit persistence.
+. Add PHPUnit/PHPStan proof when runtime wiring stabilizes.
+
+== Jira CSV
+
+[source,text]
+----
+delivery/jira/next-milestone.csv
+----

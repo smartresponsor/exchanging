@@ -1,0 +1,15 @@
+doctrine:
+  orm:
+    mappings:
+      Exchanging:
+        is_bundle: false
+        type: attribute
+        dir: '%kernel.project_dir%/../Exchanging/src/Entity'
+        prefix: 'App\Exchanging\Entity'
+        alias: Exchanging
+      ObjectingEmbeddables:
+        is_bundle: false
+        type: attribute
+        dir: '%kernel.project_dir%/vendor/objecting/object/src/Embeddable'
+        prefix: 'App\Objecting\Embeddable'
+        alias: ObjectingEmbeddables

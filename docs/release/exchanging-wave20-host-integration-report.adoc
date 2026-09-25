@@ -1,0 +1,22 @@
+= Exchanging Wave 20 Host Integration Report
+
+== Added
+
+* `docs/host/exchanging-host-integration.adoc`
+* `docs/host/examples/config-bundles.php`
+* `docs/host/examples/exchanging_imports.yaml`
+* `docs/host/examples/exchanging_routes.yaml`
+* `docs/host/examples/exchanging_composer_path_repository.json`
+* `docs/host/examples/exchanging_parameters.yaml`
+
+== Purpose
+
+Wave 20 adds host-app integration guidance without changing component runtime code.
+
+== Explicitly not changed
+
+* no namespace change
+* no Doctrine entity change
+* no route path change
+* no service contract change
+* no `/src/Domain/`

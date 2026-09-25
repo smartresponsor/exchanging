@@ -1,0 +1,29 @@
+= Exchanging Currencing Hook
+
+== Use case
+
+Currencing supplies canonical currency knowledge. Exchanging uses currency codes but does not become a currency metadata registry.
+
+== Recommended boundary
+
+Currencing owns:
+
+* valid currency code catalogue
+* currency minor units
+* currency formatting
+* currency display names
+* money normalization
+
+Exchanging owns:
+
+* exchange pairs
+* exchange rates
+* quotes
+* rate freshness
+* rate providers
+
+== Future integration option
+
+A future bridge may validate Exchanging currency codes against Currencing before capture or quote.
+
+That bridge should be explicit and should not move Currencing responsibility into Exchanging.

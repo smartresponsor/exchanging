@@ -1,0 +1,35 @@
+= Exchanging Provider Surface
+
+== Purpose
+
+The provider surface separates local persisted rates from optional remote-fetch providers.
+
+== Service contracts
+
+* `ExchangeRemoteRateProviderInterface`
+* `ExchangeRemoteRateFetchServiceInterface`
+
+== Default providers
+
+`ExchangeManualRemoteRateProvider` is intentionally non-fetching. It documents the manual capture path and prevents accidental remote calls for manual rates.
+
+`ExchangeHttpJsonRemoteRateProvider` is a generic configurable skeleton for simple HTTP JSON rate sources.
+
+== Future providers
+
+Remote providers should live under:
+
+[source,text]
+----
+src/Service/Exchange/
+----
+
+and be tagged through Symfony service configuration with:
+
+[source,yaml]
+----
+tags:
+  - { name: app.exchanging_remote_rate_provider, priority: 100 }
+----
+
+No `/src/Domain/` and no ports/adapters layer are used.

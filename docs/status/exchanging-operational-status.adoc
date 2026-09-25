@@ -1,0 +1,27 @@
+= Exchanging Operational Status
+
+== Purpose
+
+The operational status surface exposes component identity, configured policy values, HTTP endpoints, console commands, and service interface names.
+
+== Service
+
+`ExchangeOperationalStatusServiceInterface`
+
+== Console
+
+[source,powershell]
+----
+php bin/console exchanging:status
+----
+
+== HTTP
+
+[source,text]
+----
+GET /exchanging/status
+----
+
+== Notes
+
+This is an operational read surface only. It does not inspect secrets, external providers, or database connectivity.

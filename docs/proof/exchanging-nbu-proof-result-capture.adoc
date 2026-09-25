@@ -1,0 +1,41 @@
+= Exchanging NBU Proof Result Capture
+
+== Purpose
+
+This document explains how to create a local proof-result file for the optional NBU provider.
+
+== Bootstrap command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-nbu-proof-result-bootstrap.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging" `
+  -BaseCurrency USD `
+  -QuoteCurrency UAH `
+  -RateDate 2026-05-03
+----
+
+== Bootstrap for fetch-and-capture proof
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-nbu-proof-result-bootstrap.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging" `
+  -BaseCurrency USD `
+  -QuoteCurrency UAH `
+  -RateDate 2026-05-03 `
+  -Capture
+----
+
+== Output
+
+Default output:
+
+[source,text]
+----
+docs/proof/exchanging-nbu-provider-proof-result.local.adoc
+----
+
+== Safety
+
+The bootstrap script does not overwrite an existing result file.

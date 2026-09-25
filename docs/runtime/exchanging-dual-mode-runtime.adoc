@@ -1,0 +1,80 @@
+= Exchanging Dual-Mode Runtime
+
+== Purpose
+
+Exchanging is usable in two modes:
+
+. standalone runtime-capable Symfony app/component;
+. reusable Symfony bundle/library through Composer path repository or symlink.
+
+== Standalone runtime
+
+The repository now provides:
+
+* `bin/console`
+* `public/index.php`
+* `src/Kernel.php`
+* `config/bundles.php`
+* runtime Framework/Doctrine config
+* runtime service/route imports
+
+== Console
+
+[source,powershell]
+----
+cd D:\PhpstormProjects\www\Exchanging
+composer install
+php bin/console cache:clear
+php bin/console list exchanging
+php bin/console exchanging:status
+php bin/console exchanging:health
+----
+
+== Optional NBU provider proof
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch USD UAH nbu --rate-date=2026-05-03
+----
+
+== Reusable bundle mode
+
+A host app can still consume Exchanging as a package:
+
+[source,json]
+----
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../Exchanging",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "require": {
+    "exchanging/exchange": "*"
+  }
+}
+----
+
+The bundle class remains:
+
+[source,php]
+----
+App\Exchanging\ExchangingBundle
+----
+
+== Boundary
+
+Standalone runtime does not introduce sandbox responsibility.
+
+It is the component's own runtime shell.
+
+== Canon
+
+* namespace remains `App\Exchanging`
+* no `/src/Domain/`
+* no ports-and-adapters architecture
+* runtime shell uses Symfony Kernel/MicroKernelTrait

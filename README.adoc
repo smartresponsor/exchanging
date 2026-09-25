@@ -1,0 +1,47 @@
+= Exchanging
+
+Exchanging component.
+
+== Outbound Bridge/Interfacing contract
+
+Primary output provider:
+
+[source,php]
+----
+App\Exchanging\ProviderInterface\ExchangeTemplateContextProviderInterface
+----
+
+Primary output DTO:
+
+[source,php]
+----
+App\Exchanging\DTO\ExchangeTemplateContextDTO
+----
+
+Docs:
+
+* `docs/contract/exchanging-output-template-context-contract.adoc`
+* `docs/bridge/exchanging-interfacing-bridge-contract.adoc`
+
+== Neighbor hook contracts
+
+* Currencing: `ExchangeCurrencyHookInterface`
+* Taxating: `ExchangeTaxationHookInterface`
+* Billing: `ExchangeBillingHookInterface`
+* Paying: `ExchangePayingHookInterface`
+* Ordering: `ExchangeOrderingHookInterface`
+
+Docs:
+
+* `docs/contract/exchanging-neighbor-hook-contracts.adoc`
+
+== Canon
+
+* namespace: `App\Exchanging`
+* package: `exchanging/exchange`
+* Symfony constraints: `^8.1` within Symfony 8
+* DoctrineBundle: `^3.2`
+* DBAL: `^4.0`
+* table prefix: `exchange_`
+* no `/src/Domain/`
+* no ports-and-adapters architecture

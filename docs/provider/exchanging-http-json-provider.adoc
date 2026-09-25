@@ -1,0 +1,47 @@
+= Exchanging HTTP JSON Provider
+
+== Purpose
+
+`ExchangeHttpJsonRemoteRateProvider` is a generic provider skeleton for HTTP JSON rate sources.
+
+== Expected response
+
+The provider accepts either field name:
+
+[source,json]
+----
+{
+  "rateValue": "41.2500000000",
+  "rateDate": "2026-05-03"
+}
+----
+
+or:
+
+[source,json]
+----
+{
+  "rate": "41.2500000000",
+  "rateDate": "2026-05-03"
+}
+----
+
+== Host parameters
+
+[source,yaml]
+----
+parameters:
+  exchanging.http_json_provider_code: 'http-json'
+  exchanging.http_json_endpoint_url: 'https://example.test/rates'
+----
+
+== Command
+
+[source,powershell]
+----
+php bin/console exchanging:rate:fetch-capture USD UAH http-json --rate-date=2026-05-03
+----
+
+== Canon
+
+This provider lives in `src/Service/Exchange` and is tagged through Symfony DI. No `/src/Domain/` layer is used.

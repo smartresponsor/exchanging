@@ -1,0 +1,82 @@
+= Exchanging Neighbor Hook Contracts
+
+== Purpose
+
+This document defines optional outbound hook contracts for neighboring components.
+
+== Neighbor context provider
+
+`ExchangeNeighborHookContextProviderInterface`
+
+Returns:
+
+`ExchangeNeighborHookContextDTO`
+
+== Neighbor hooks
+
+=== Currencing
+
+Interface:
+
+`ExchangeCurrencyHookInterface`
+
+Purpose:
+
+* currency code validation
+* minor units
+* display metadata
+* currency normalization
+
+=== Taxating
+
+Interface:
+
+`ExchangeTaxationHookInterface`
+
+Purpose:
+
+* applied exchange rate for sales tax/VAT calculations
+* converted taxable base
+* applied-rate audit payload
+
+=== Billing
+
+Interface:
+
+`ExchangeBillingHookInterface`
+
+Purpose:
+
+* invoice totals
+* billing document display context
+* converted amount context
+
+=== Paying
+
+Interface:
+
+`ExchangePayingHookInterface`
+
+Purpose:
+
+* payment capture/settlement conversion
+* provider rate attribution
+* payment applied-rate audit
+
+=== Ordering
+
+Interface:
+
+`ExchangeOrderingHookInterface`
+
+Purpose:
+
+* order totals
+* checkout conversion preview
+* quote display context
+
+== Canon
+
+These are Symfony service contracts under `src/ServiceInterface/`.\n\nThe neighbor context provider is a provider contract under `src/ProviderInterface/`.
+
+They are not ports/adapters and do not create `/src/Domain/`.

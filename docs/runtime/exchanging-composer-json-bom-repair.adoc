@@ -1,0 +1,36 @@
+= Exchanging Composer JSON BOM Repair
+
+== Problem
+
+PowerShell 5 `Set-Content -Encoding UTF8` can write UTF-8 with BOM.
+
+Composer rejects `composer.json` with:
+
+[source,text]
+----
+"./composer.json" does not contain valid JSON
+BOM detected, make sure your input does not include a Unicode Byte-Order-Mark
+----
+
+== Repair command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-remove-composer-bom.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Constraint fixer behavior
+
+`tools/runtime/exchanging-fix-exact-composer-constraints.ps1` now writes `composer.json` using `.NET` UTF-8 without BOM.
+
+== Recommended sequence
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-remove-composer-bom.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+
+powershell -ExecutionPolicy Bypass -File tools/runtime/exchanging-update-symfony8-targeted.ps1 `
+  -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----

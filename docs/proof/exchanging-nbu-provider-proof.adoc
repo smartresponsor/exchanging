@@ -1,0 +1,55 @@
+= Exchanging NBU Provider Proof
+
+== Purpose
+
+This proof verifies the optional NBU remote-rate provider after it has been enabled in the host app.
+
+== Prerequisite
+
+The host app must import:
+
+[source,yaml]
+----
+imports:
+  - { resource: '../Exchanging/config/packages/exchange_nbu_provider.yaml' }
+----
+
+== Fetch-only proof
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-nbu-provider-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging" `
+  -BaseCurrency USD `
+  -QuoteCurrency UAH `
+  -RateDate 2026-05-03
+----
+
+== Fetch-and-capture proof
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-nbu-provider-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging" `
+  -BaseCurrency USD `
+  -QuoteCurrency UAH `
+  -RateDate 2026-05-03 `
+  -Capture
+----
+
+== Proof steps
+
+. Verify optional NBU config exists.
+. Verify NBU provider class exists.
+. Run `composer dump-autoload`.
+. Run `php bin/console cache:clear`.
+. Confirm the provider service is visible in the container.
+. Run `exchanging:rate:fetch`.
+. Optionally run `exchanging:rate:fetch-capture`.
+. Optionally run `exchanging:rate:latest`.
+
+== Scope
+
+This proof checks the host wiring and one NBU API fetch path.
+
+It does not certify production use, provider SLA, retry policy, quota behavior, or legal/compliance requirements.

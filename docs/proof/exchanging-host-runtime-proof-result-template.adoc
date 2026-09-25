@@ -1,0 +1,107 @@
+= Exchanging Host Runtime Proof Result Template
+
+== Proof metadata
+
+[cols="1,2"]
+|===
+| Field | Value
+
+| Component
+| Exchanging
+
+| Package
+| `exchanging/exchange`
+
+| Namespace
+| `App\Exchanging`
+
+| Host root
+| `D:\PhpstormProjects\www\Exchanging`
+
+| Proof date
+| TODO
+
+| Operator
+| TODO
+
+| Branch/commit
+| TODO
+
+| Patch wave baseline
+| Wave 30+
+|===
+
+== Command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-host-runtime-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Result summary
+
+[cols="1,1,3"]
+|===
+| Step | Status | Notes
+
+| composer validate
+| TODO
+| TODO
+
+| composer dump-autoload
+| TODO
+| TODO
+
+| php bin/console cache:clear
+| TODO
+| TODO
+
+| php bin/console debug:router \| findstr exchanging
+| TODO
+| TODO
+
+| php bin/console debug:container App\Exchanging\ServiceInterface\ExchangeQuoteServiceInterface
+| TODO
+| TODO
+
+| php bin/console doctrine:mapping:info \| findstr Exchanging
+| TODO
+| TODO
+
+| php bin/console exchanging:status
+| TODO
+| TODO
+
+| php bin/console exchanging:health
+| TODO
+| TODO
+
+| php bin/console exchanging:demo:seed-rates
+| TODO
+| TODO
+
+| php bin/console exchanging:rate:latest --base=USD --quote=UAH --provider=demo --limit=10
+| TODO
+| TODO
+
+| php bin/console exchanging:quote USD UAH 100
+| TODO
+| TODO
+|===
+
+== Blockers
+
+* TODO
+
+== Follow-up patch candidates
+
+* TODO
+
+== Final proof status
+
+Choose one:
+
+* `PASS`
+* `PASS_WITH_WARNINGS`
+* `FAIL`

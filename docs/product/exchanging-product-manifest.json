@@ -1,0 +1,35 @@
+{
+  "component": "Exchanging",
+  "productCapability": "Currency exchange rates and conversion quote surface",
+  "owns": [
+    "exchange pairs",
+    "current and historical rates",
+    "rate capture",
+    "remote provider fetch",
+    "fetch-and-capture",
+    "quote calculation",
+    "freshness policy",
+    "applied-rate audit payload construction"
+  ],
+  "doesNotOwn": [
+    "currency metadata master data",
+    "pricing",
+    "ordering lifecycle",
+    "payment lifecycle",
+    "tax rules",
+    "tax line calculation"
+  ],
+  "consumers": [
+    "Currencing",
+    "Ordering",
+    "Paying",
+    "Taxating"
+  ],
+  "primaryUserFlows": [
+    "capture manual rate",
+    "fetch remote rate",
+    "fetch and capture remote rate",
+    "calculate quote",
+    "build applied-rate audit payload"
+  ]
+}

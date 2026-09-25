@@ -1,0 +1,61 @@
+= Exchanging RC Gate
+
+== Purpose
+
+The RC gate performs a fast self-audit of the repository surface.
+
+It checks:
+
+* required Symfony/config files
+* bundle class and DI extension
+* OpenAPI contract
+* component manifest
+* schema manifest
+* status, health, and read-surface docs
+* Jira delivery surface
+* canonical package identity
+* canonical namespace
+* forbidden `/src/Domain/` directory
+* Jira CSV header
+* non-canonical `App\...` namespaces under `src/`
+
+== Current surface assertions
+
+The gate checks that these HTTP routes are represented:
+
+* `POST /exchanging/quote`
+* `POST /exchanging/rates/capture`
+* `GET /exchanging/rates/latest`
+* `GET /exchanging/status`
+* `GET /exchanging/health`
+
+The gate checks that these console commands are represented:
+
+* `exchanging:rate:capture`
+* `exchanging:quote`
+* `exchanging:rate:fetch`
+* `exchanging:rate:fetch-capture`
+* `exchanging:demo:seed-rates`
+* `exchanging:rate:latest`
+* `exchanging:status`
+* `exchanging:health`
+
+== Command
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/gate/exchanging-rc-gate.ps1 -ProjectRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Non-destructive behavior
+
+The gate only reads files and reports failures. It does not delete, move, or rewrite repository content.
+
+== Canon
+
+* package: `exchanging/exchange`
+* namespace: `App\Exchanging`
+* bundle: `App\Exchanging\ExchangingBundle`
+* table prefix: `exchange_`
+* forbidden: `/src/Domain/`
+* forbidden: ports-and-adapters architecture drift

@@ -1,0 +1,40 @@
+= Exchanging Applied Rate Audit
+
+== Purpose
+
+The applied-rate audit surface lets consumer components record exactly which rate was used for a business decision.
+
+Examples:
+
+* Ordering can store which rate was applied to an order quote.
+* Paying can store which rate was applied to payment conversion.
+* Taxating can store which rate was applied to tax normalization.
+
+== Contract
+
+`ExchangeAppliedRateAuditServiceInterface`
+
+== Input
+
+The request includes:
+
+* base currency
+* quote currency
+* source amount
+* converted amount
+* rate value
+* provider code
+* rate date
+* captured timestamp
+* consumer context
+* consumer reference
+
+== Output
+
+The result includes an `auditKey` derived from the immutable audit payload.
+
+== Canon
+
+This component builds the audit payload. The consumer component decides where to persist that payload.
+
+No `/src/Domain/` layer is introduced.

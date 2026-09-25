@@ -1,0 +1,22 @@
+= Exchanging Taxating Hook
+
+== Use case
+
+Taxating asks Exchanging for conversion data needed for tax normalization or audit evidence.
+
+== Recommended service interfaces
+
+* `ExchangeQuoteServiceInterface`
+* `ExchangeAppliedRateAuditServiceInterface`
+* `ExchangeRateFreshnessServiceInterface`
+
+== Flow
+
+. Taxating calculates taxable basis.
+. Taxating requests conversion quote when the taxable basis needs currency normalization.
+. Taxating optionally checks freshness policy.
+. Taxating stores applied-rate audit evidence in its own tax evidence model.
+
+== Boundary
+
+Exchanging must not calculate tax lines, jurisdiction rules, or tax exemption logic.

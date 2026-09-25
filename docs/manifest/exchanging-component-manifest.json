@@ -1,0 +1,61 @@
+{
+  "component": "Exchanging",
+  "package": "exchanging/exchange",
+  "namespace": "App\\Exchanging",
+  "version": "0.51.0",
+  "bundle": {
+    "class": "App\\Exchanging\\ExchangingBundle"
+  },
+  "http": {
+    "routes": [
+      {"methods": ["GET"], "path": "/exchanging/rates/latest"},
+      {"methods": ["GET"], "path": "/exchanging/status"},
+      {"methods": ["GET"], "path": "/exchanging/health"},
+      {"methods": ["POST"], "path": "/exchanging/quote"},
+      {"methods": ["POST"], "path": "/exchanging/rates/capture"}
+    ]
+  },
+  "console": {
+    "commands": [
+      "exchanging:rate:capture",
+      "exchanging:quote",
+      "exchanging:rate:fetch",
+      "exchanging:rate:fetch-capture",
+      "exchanging:demo:seed-rates",
+      "exchanging:rate:latest",
+      "exchanging:status",
+      "exchanging:health"
+    ]
+  },
+  "outboundContracts": {
+    "templateContext": {
+      "requestDto": "App\\Exchanging\\DTO\\ExchangeTemplateContextRequestDTO",
+      "outputDto": "App\\Exchanging\\DTO\\ExchangeTemplateContextDTO",
+      "provider": "App\\Exchanging\\ProviderInterface\\ExchangeTemplateContextProviderInterface",
+      "guide": "docs/contract/exchanging-output-template-context-contract.adoc",
+      "bridgeGuide": "docs/bridge/exchanging-interfacing-bridge-contract.adoc"
+    },
+    "neighborHooks": {
+      "contextDto": "App\\Exchanging\\DTO\\ExchangeNeighborHookContextDTO",
+      "contextProvider": "App\\Exchanging\\ProviderInterface\\ExchangeNeighborHookContextProviderInterface",
+      "currency": "App\\Exchanging\\ServiceInterface\\ExchangeCurrencyHookInterface",
+      "taxation": "App\\Exchanging\\ServiceInterface\\ExchangeTaxationHookInterface",
+      "billing": "App\\Exchanging\\ServiceInterface\\ExchangeBillingHookInterface",
+      "paying": "App\\Exchanging\\ServiceInterface\\ExchangePayingHookInterface",
+      "ordering": "App\\Exchanging\\ServiceInterface\\ExchangeOrderingHookInterface",
+      "guide": "docs/contract/exchanging-neighbor-hook-contracts.adoc"
+    }
+  },
+  "runtimeCodeChanges": true,
+  "canon": {
+    "symfonyConstraints": "^8.1 within Symfony 8",
+    "doctrineBundle": "^3.2",
+    "doctrineDbal": "^4.0",
+    "forbidden": [
+      "/src/Domain/",
+      "ports-and-adapters architecture"
+    ],
+    "tablePrefix": "exchange_",
+    "rootNamespace": "App\\Exchanging"
+  }
+}

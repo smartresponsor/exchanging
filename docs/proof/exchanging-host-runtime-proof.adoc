@@ -1,0 +1,54 @@
+= Exchanging Host Runtime Proof
+
+== Purpose
+
+This document defines the runtime proof sequence for Exchanging inside a Symfony host application.
+
+The proof is intentionally separate from the architecture/business RC checkpoint.
+
+== Script
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-host-runtime-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\HostApp"
+----
+
+For a sibling Exchanging repo used directly as the host proof target:
+
+[source,powershell]
+----
+powershell -ExecutionPolicy Bypass -File tools/proof/exchanging-host-runtime-proof.ps1 `
+  -HostRoot "D:\PhpstormProjects\www\Exchanging"
+----
+
+== Proof steps
+
+. `composer validate`
+. `composer dump-autoload`
+. `php bin/console cache:clear`
+. `php bin/console debug:router | findstr exchanging`
+. `php bin/console debug:container App\Exchanging\ServiceInterface\ExchangeQuoteServiceInterface`
+. `php bin/console doctrine:mapping:info | findstr Exchanging`
+. `php bin/console exchanging:status`
+. `php bin/console exchanging:health`
+. `php bin/console exchanging:demo:seed-rates`
+. `php bin/console exchanging:rate:latest --base=USD --quote=UAH --provider=demo --limit=10`
+. `php bin/console exchanging:quote USD UAH 100`
+
+== Non-destructive behavior
+
+The script does not delete repository content.
+
+It writes demo exchange-rate rows only through the existing `exchanging:demo:seed-rates` command.
+
+== Expected outcome
+
+The proof passes when all commands complete with exit code `0`.
+
+== Not covered
+
+* external provider production certification
+* PHPUnit/PHPStan coverage
+* production migration review
+* security review

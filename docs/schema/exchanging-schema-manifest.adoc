@@ -1,0 +1,45 @@
+= Exchanging Schema Manifest
+
+== Doctrine tables
+
+=== exchange_exchange
+
+Purpose: stores active/inactive currency exchange pairs.
+
+Columns:
+
+* `id` INTEGER generated primary key
+* `base_currency_code` VARCHAR(3)
+* `quote_currency_code` VARCHAR(3)
+* `is_active` BOOLEAN
+* `created_at` TIMESTAMP immutable (Objecting audit)
+* `modified_at` TIMESTAMP immutable nullable (Objecting audit)
+* `created_by` VARCHAR(190) nullable (Objecting audit)
+* `modified_by` VARCHAR(190) nullable (Objecting audit)
+
+Indexes:
+
+* `idx_exchange_pair(base_currency_code, quote_currency_code)`
+
+=== exchange_rate
+
+Purpose: stores provider-backed exchange rate snapshots.
+
+Columns:
+
+* `id` INTEGER generated primary key
+* `base_currency_code` VARCHAR(3)
+* `quote_currency_code` VARCHAR(3)
+* `rate_value` NUMERIC(20, 10)
+* `provider_code` VARCHAR(80)
+* `rate_date` DATE immutable
+* `captured_at_immutable` TIMESTAMP immutable
+
+Indexes:
+
+* `idx_exchange_rate_pair_date(base_currency_code, quote_currency_code, rate_date)`
+* `idx_exchange_rate_provider_date(provider_code, rate_date)`
+
+== Prefix canon
+
+Every table owned by this component uses the `exchange_` prefix.
