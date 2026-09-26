@@ -1,5 +1,42 @@
 # CMCP_CHANGELOG
 
+## 2026-09-26 — NBU provenance-date fail-closed hardening
+
+### Reconnaissance baseline
+
+- Read the Exchanging AGENTS/README surfaces, Composer manifests, component/canon manifests, runtime/bridge/provider contracts, source/tests, and existing CMCP journal.
+- Re-read the mandatory Objecting, Cruding, Viewing, Interfacing, and Gating repository contracts and verified Exchanging's declared runtime/path dependency contour.
+- Read authoritative Canonization rules Canon011, Canon018, Canon052, and Canon053. Canon011 applies to provider-date fallback semantics; Canon018 confirms `exchanging/exchange` => `App\\Exchanging\\` plus `Exchange*`; Canon052/053 constrain Gating integration and sibling symlink topology.
+- Market comparison reconfirmed that mature FX layers preserve historical rate dates/provenance, deterministic arithmetic, caching/freshness, and explicit provider fallback while leaving settlement/wallet/payment ownership outside Exchanging.
+- Git baseline before mutation: `main` at `25e685089089d54c99554cd537b516d84b7f0585`, tracking `origin/main`, ahead 0 / behind 0. Pre-existing dirty state is confined to the materialized `.gating/` surface and is preserved.
+
+### Selected work
+
+- RC-critical: prevent NBU responses with missing/invalid `exchangedate` from being silently relabeled with the local current date when no explicit request date exists; keep explicit request-date fallback behavior.
+- Growth (post-RC): deterministic multi-provider priority/failover, triangulation/cross-rates, explicit commercial/manual spread semantics, provider observability, and richer provenance UX.
+
+### Target-to-canon mapping
+
+- Canon011: provider date fallback is valid only when the caller explicitly supplied a request date; otherwise invalid/missing NBU dates remain observable failures.
+- Canon018: touched PHP remains under `App\\Exchanging` and existing `Exchange*` vocabulary.
+- Canon052: no normative/executable Gating policy is added to consumer `.gating/`; its pre-existing materialized state is preserved.
+- Canon053: no sibling Composer repository wiring is changed.
+
+### Verification and acceptance
+
+- PHP syntax: PASS for the touched production normalizer and test file.
+- `composer validate --strict --check-lock`: PASS.
+- `composer validate:prod`: PASS.
+- `composer audit`: PASS, no security advisories.
+- `composer test`: PASS, 28 tests / 203 assertions.
+- `composer phpstan`: PASS, 0 errors.
+- `composer cs:check`: PASS, 0 fixable files.
+- `composer gate`: PASS, 0 failed / 0 warning.
+- `composer test:evidence`: PASS; PHPUnit 28/28 plus Playwright 1/1 browser health evidence and behavioral evidence verifier.
+- `exchanging:health --env=test`: PASS.
+- `exchanging:status --env=test`: PASS.
+- No user-observable UI was changed; screenshot evidence is not applicable to this patch.
+
 ## 2026-09-24 — Canon052 consumer-artifact and documentation closure
 
 ### Reconnaissance baseline

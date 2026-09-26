@@ -27,7 +27,8 @@ Fields:
 * rate must be scalar;
 * rate must be numeric;
 * exchange date is parsed from `d.m.Y`;
-* fallback date is used when response date is unavailable.
+* explicit request fallback date is used when response date is unavailable or invalid;
+* missing/invalid response date without an explicit fallback is rejected instead of being relabeled as today's rate.
 
 == Reason for extraction
 
@@ -42,7 +43,7 @@ The normalizer owns response validation/parsing only.
 
 == Canon
 
-* service stays in `src/Service/Exchange`;
+* normalizer stays in `src/Normalizer`;
 * DTO stays in `src/DTO`;
 * no `/src/Domain/`;
 * no ports-and-adapters architecture.

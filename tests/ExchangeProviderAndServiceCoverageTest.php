@@ -109,6 +109,7 @@ final class ExchangeProviderAndServiceCoverageTest extends TestCase
             [[], 'USD', 'does not contain a rate row'],
             [[['rate' => []]], 'USD', 'does not contain a scalar rate'],
             [[['rate' => 'abc']], 'USD', 'contains invalid rate value'],
+            [[['rate' => '41.30', 'exchangedate' => 'bad-date']], 'USD', 'does not contain a valid exchange date'],
         ] as [$payload, $currency, $message]) {
             try {
                 $normalizer->normalize($payload, $currency);

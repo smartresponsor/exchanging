@@ -92,6 +92,10 @@ final readonly class ExchangeNbuRateResponseNormalizer
             }
         }
 
-        return $fallbackDate ?? new \DateTimeImmutable('today');
+        if ($fallbackDate instanceof \DateTimeImmutable) {
+            return $fallbackDate;
+        }
+
+        throw new \UnexpectedValueException('NBU response does not contain a valid exchange date.');
     }
 }
